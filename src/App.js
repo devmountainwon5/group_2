@@ -1,9 +1,9 @@
 import React from 'react';
-import NavBar from './components/Navbar';
+import NavBar from './components/Navbar/Navbar';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Profile from './components/Profile';
-import PrivateRoute from './components/PrivateRoute';
-import ExternalApi from './components/ExternalApi';
+import Profile from './components/Profile/Profile';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import ExternalApi from './components/ExternalApi/ExternalApi';
 
 function App() {
   return (

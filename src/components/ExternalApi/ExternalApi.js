@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAuth0 } from '../react-auth0-wrapper';
+import { useAuth0 } from './../../react-auth0-wrapper';
 
 const ExternalApi = () => {
   const [showResult, setShowResult] = useState(false);
