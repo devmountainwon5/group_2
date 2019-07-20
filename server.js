@@ -27,7 +27,7 @@ app.get('/*', (req, res) => {
       })
 });
 
-const port = PORT || 3131;
+const port = PORT || 4000;
 
 app.listen(port, ()=>{
     console.log(`Liftoff on port ${port}`)
