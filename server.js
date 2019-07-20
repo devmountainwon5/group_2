@@ -3,11 +3,21 @@ const massive = require('massive');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const authenticate = require('./server/controller/authenticate');
-const group = require('./server/controller/group');
-const post = require('./server/controller/post');
 const path = require('path');
 require('dotenv').config();
+
+const app = express();
+
+const { PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
+
+massive(CONNECTION_STRING)
+    .then((dbInstance)=>{
+        app.set('db', dbInstance)
+        console.log('Database is connected')
+    })
+    .catch((err)=>{
+        console.log(`There was an error ${err}`)
+    })
 
 app.use(cors());
 app.use(bodyParser.json());
