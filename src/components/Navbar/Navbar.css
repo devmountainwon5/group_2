@@ -1,0 +1,26 @@
+.nav {
+	margin: 0px;
+	display: flex;
+	align-items: center;
+	padding: 8px;
+	height: 60px;
+	width: 100vw;
+	background-color: #002642;
+
+	/* margin-left: 355px;
+	margin-right: 355px;
+	margin-bottom: 19px;
+	margin-top: 19px;
+	width: 275px;
+	height: 275px;
+	border-radius: 75px; */
+}
+
+.nav-buttons {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	margin: 2px;
+	color: #e5dada;
+	background-color: #e59500;
+}
