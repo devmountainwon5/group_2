@@ -7,7 +7,6 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
-
 import { createMuiTheme } from "@material-ui/core/styles";
 import { ThemeProvider } from "@material-ui/styles";
 
@@ -38,13 +37,14 @@ const colors = createMuiTheme({
 
 const useStyles = makeStyles(theme => ({
 	root: {
-		background: "linear-gradient(45deg, #002642 30%, #e5dada 90%)",
-		border: 0,
-		borderRadius: 3,
-		boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
-		color: "e5dada",
-		height: 48,
-		padding: "0 30px",
+		//Show Team Linear Background behind cards? - Have no "Parent Comp" other than App.js to apply to
+		// background: "linear-gradient(45deg, #002642 30%, #e5dada 90%)",
+		// border: 0,
+		// borderRadius: 3,
+		// boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+		// color: "e5dada",
+		// height: 48,
+		// padding: "0 30px",
 		flexGrow: 1
 	},
 	menuButton: {
@@ -65,7 +65,10 @@ const NavBar = () => {
 				<Toolbar>
 					<Typography variant="h6" className={classes.title}>
 						{!isAuthenticated && (
-							<Button color="secondary" onClick={() => loginWithRedirect({})}>
+							<Button
+								variant="contained"
+								color="secondary"
+								onClick={() => loginWithRedirect({})}>
 								Log in
 							</Button>
 						)}

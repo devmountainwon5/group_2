@@ -1,5 +1,11 @@
 .App {
 	text-align: center;
+	background: linear-gradient(45deg, #002642 90%, #e5dada 30%);
+	border: 0;
+	border-radius: 3;
+	color: black;
+	/* height: 48px; */
+	padding: 0 30px;
 }
 
 .App-logo {

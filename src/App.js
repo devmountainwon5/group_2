@@ -13,6 +13,7 @@ function App() {
 				<header>
 					<NavBar />
 				</header>
+
 				<Switch>
 					<Route path="/" exact />
 					<PrivateRoute path="/profile" component={Profile} />
