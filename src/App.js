@@ -1,3 +1,4 @@
+
 import React from 'react';
 import NavBar from './components/Navbar/Navbar';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
