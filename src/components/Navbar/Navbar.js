@@ -35,6 +35,13 @@ const colors = createMuiTheme({
 	}
 });
 
+const styles = theme => ({
+	root: {
+		// JSS uses px as the default units for this CSS property.
+		padding: theme.spacing(2) // = 8 * 2
+	}
+});
+
 const useStyles = makeStyles(theme => ({
 	root: {
 		//Show Team Linear Background behind cards? - Have no "Parent Comp" other than App.js to apply to
@@ -44,7 +51,7 @@ const useStyles = makeStyles(theme => ({
 		// boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
 		// color: "e5dada",
 		// height: 48,
-		// padding: "0 30px",
+		padding: theme.spacing(2),
 		flexGrow: 1
 	},
 	menuButton: {
@@ -61,6 +68,7 @@ const NavBar = () => {
 
 	return (
 		<ThemeProvider className={classes.root} theme={colors}>
+			<spacing m="2rem" />
 			<AppBar position="static">
 				<Toolbar>
 					<Typography variant="h6" className={classes.title}>
@@ -75,13 +83,13 @@ const NavBar = () => {
 
 						{isAuthenticated && (
 							<span>
+								<spacing m="2rem" />
 								<Button
 									variant="contained"
 									color="secondary"
 									className="nav-buttons">
 									<Link to="/">Home</Link>&nbsp;
 								</Button>
-								{/* <spacing m="2rem" /> */}
 
 								<Button
 									variant="contained"
