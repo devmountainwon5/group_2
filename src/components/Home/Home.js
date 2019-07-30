@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getCurrentLocation } from '../../actions/locationActions'
+import { getCurrentLocation, getCityBars } from '../../actions/locationActions'
 import MyFancyComponent from './MapComponent'
 
 class Home extends Component {
@@ -26,6 +26,7 @@ class Home extends Component {
 
   componentWillMount() {
     this.props.getCurrentLocation();    
+    // this.props.getCityBars();
   }
 
 
@@ -40,22 +41,18 @@ class Home extends Component {
     let { locationReceived } = this.state;
     return (
       <div className="container">
-        <div className="row">
-          
-          
-        </div>
         { locationReceived ? <MyFancyComponent className="mt-5"/> : <h2>Loading...</h2> }
       </div>
     );
   }
 }
-Home.propTypes = {
-  auth: PropTypes.object.isRequired
-};
+// Home.propTypes = {
+//   auth: PropTypes.object.isRequired
+// };
 const mapStateToProps = state => ({
-  auth: state.auth,
-  error: state.error,
+  // auth: state.auth,
+  // error: state.error,
   userLocation: state.location.userLocation,
 })
 
-export default connect(mapStateToProps, {  getCurrentLocation })(Home);
+export default connect(mapStateToProps, {  getCurrentLocation, getCityBars })(Home);

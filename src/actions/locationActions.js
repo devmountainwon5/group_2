@@ -5,6 +5,7 @@ import { GET_CITY_BARS, GET_CURRENT_LOCATION, CLEAR_CURRENT_LOCATION, GET_ERRORS
 
 
 export const getCurrentLocation = () => dispatch => {
+
   let options = {
     enableHighAccuracy: true,
     timeout: 5000,
@@ -44,6 +45,7 @@ export const getCityBars = (places) => dispatch => {
       })
       miamiBars.push(singleBar)
     })  
+    console.log(miamiBars)
     dispatch({
       type: GET_CITY_BARS,
       payload: miamiBars      
