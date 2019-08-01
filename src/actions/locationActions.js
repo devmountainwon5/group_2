@@ -41,7 +41,8 @@ export const getRestaurants = (places) => dispatch => {
         name: place.name,
         address: place.vicinity,
         lat: place.geometry.location.lat(),
-        lng: place.geometry.location.lng()
+        lng: place.geometry.location.lng(),
+        rating: place.rating
       })
       restaurant.push(singleRestaurant)
     })  

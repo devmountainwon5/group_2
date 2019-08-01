@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getCurrentLocation, getRestaurants } from '../../actions/locationActions'
 import MyFancyComponent from './MapComponent'
+import RestaurantList from './RestaurantList/RestaurantList';
 
 class Home extends Component {
   constructor(){
@@ -41,6 +42,7 @@ class Home extends Component {
     return (
       <div className="container">
         { locationReceived ? <MyFancyComponent className="mt-5"/> : <h2>Loading...</h2> }
+        <RestaurantList />
       </div>
     );
   }
