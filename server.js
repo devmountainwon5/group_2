@@ -77,8 +77,6 @@ app.post("/api/user", (req, res) => {
 				});
 		})
 		.then(() => {
-			debugger;
-
 			res.send({ success: true });
 		})
 		.catch(err => {
