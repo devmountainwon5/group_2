@@ -1,44 +1,54 @@
+
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { connect } from 'react-redux';
+import { getCurrentLocation, getRestaurants } from '../../actions/locationActions'
+import MyFancyComponent from './MapComponent'
 
-
-export class Home extends Component {
-    state = { userLocation: { lat: 32, lng: 32 }, loading: true };
-  
-    componentDidMount(props) {
-      navigator.geolocation.getCurrentPosition(
-        position => {
-          const { latitude, longitude } = position.coords;
-  
-          this.setState({
-            userLocation: { lat: latitude, lng: longitude },
-            loading: false
-          });
-        },
-        () => {
-          this.setState({ loading: false });
-        }
-      );
+class Home extends Component {
+  constructor(){
+    super();
+    this.state = {
+      error: {},
+      location: {},
+      locationReceived: false
     }
-  
-    render() {
-      const { loading, userLocation } = this.state;
-      const { google } = this.props;
-  
-      if (loading) {
-        return null;
-      }
-  
-      return <Map google={google} initialCenter={userLocation} zoom={10} />;
-    }
+    this.onClick = this.onClick.bind(this);
   }
-  
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.userLocation){
+      this.setState({
+        locationReceived: true,
+        location: nextProps.userLocation
+      })
+    }
 
-  export default GoogleApiWrapper({
-    apiKey: 'AIzaSyC3e9Mu_8YKN5CLDPZsK7NHNLm-9iCRcws'
-  })(Home);
+  }
 
-  const mapStyles = {
-    width: '100%',
-    height: '100%',
-  };
+  componentWillMount() {
+    this.props.getCurrentLocation();    
+  }
+
+
+
+  onClick(e) {
+    e.preventDefault();
+    this.props.logoutUser()
+  }
+  render() {
+    const { error } = this.state
+
+    let { locationReceived } = this.state;
+    return (
+      <div className="container">
+        { locationReceived ? <MyFancyComponent className="mt-5"/> : <h2>Loading...</h2> }
+      </div>
+    );
+  }
+}
+
+const mapStateToProps = state => ({
+  // error: state.error,
+  userLocation: state.location.userLocation,
+})
+
+export default connect(mapStateToProps, {  getCurrentLocation, getRestaurants })(Home);

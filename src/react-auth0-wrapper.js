@@ -33,6 +33,7 @@ export const Auth0Provider = ({
 
       if (isAuthenticated) {
         const user = await auth0FromHook.getUser();
+        console.log(user)
         setUser(user);
       }
 
@@ -43,6 +44,7 @@ export const Auth0Provider = ({
   }, []);
 
   const loginWithPopup = async (params = {}) => {
+    console.log('Login with popup')
     setPopupOpen(true);
     try {
       await auth0Client.loginWithPopup(params);
@@ -52,11 +54,13 @@ export const Auth0Provider = ({
       setPopupOpen(false);
     }
     const user = await auth0Client.getUser();
+    console.log('user')
     setUser(user);
     setIsAuthenticated(true);
   };
 
   const handleRedirectCallback = async () => {
+    console.log('handleRedirectCallback')
     setLoading(true);
     await auth0Client.handleRedirectCallback();
     const user = await auth0Client.getUser();
