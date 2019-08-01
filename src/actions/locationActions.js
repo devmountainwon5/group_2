@@ -1,4 +1,4 @@
-import { GET_CITY_BARS, GET_CURRENT_LOCATION, CLEAR_CURRENT_LOCATION, GET_ERRORS } from './types';
+import { GET_RESTAURANTS, GET_CURRENT_LOCATION, CLEAR_CURRENT_LOCATION, GET_ERRORS } from './types';
 
 
 
@@ -32,23 +32,23 @@ export const getCurrentLocation = () => dispatch => {
   navigator.geolocation.getCurrentPosition(success, error, options);
 }
 
-export const getCityBars = (places) => dispatch => { 
+export const getRestaurants = (places) => dispatch => { 
 
-  let miamiBars = []
+  let restaurant = []
     places.map((place, i) => {
-      let singleBar = ({
+      let singleRestaurant = ({
         id: place.id,
         name: place.name,
         address: place.vicinity,
         lat: place.geometry.location.lat(),
         lng: place.geometry.location.lng()
       })
-      miamiBars.push(singleBar)
+      restaurant.push(singleRestaurant)
     })  
-    console.log(miamiBars)
+    console.log(restaurant)
     dispatch({
-      type: GET_CITY_BARS,
-      payload: miamiBars      
+      type: GET_RESTAURANTS,
+      payload: restaurant      
     })
     
   }

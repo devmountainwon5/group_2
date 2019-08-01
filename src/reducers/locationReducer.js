@@ -1,8 +1,8 @@
-import { GET_CURRENT_LOCATION, GET_CITY_BARS } from '../actions/types'
+import { GET_CURRENT_LOCATION,  GET_RESTAURANTS } from '../actions/types'
 
 const initialState = {
   userLocation: {},
-  localBars: []
+  localRestaurants: []
 }
 
 export default function(state=initialState, action){
@@ -13,12 +13,12 @@ export default function(state=initialState, action){
       ...state,
       userLocation: action.payload
     }
-    case GET_CITY_BARS:
+    case GET_RESTAURANTS:
     console.log(action.payload)
       return {
         ...state,
-        localBars: [
-          ...state.localBars,
+        localRestaurants: [
+          ...state.localRestaurants,
           ...action.payload
         ]
 

@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getCurrentLocation, getCityBars } from '../../actions/locationActions'
+import { getCurrentLocation, getRestaurants } from '../../actions/locationActions'
 import MyFancyComponent from './MapComponent'
 
 class Home extends Component {
@@ -26,7 +26,6 @@ class Home extends Component {
 
   componentWillMount() {
     this.props.getCurrentLocation();    
-    // this.props.getCityBars();
   }
 
 
@@ -46,13 +45,10 @@ class Home extends Component {
     );
   }
 }
-// Home.propTypes = {
-//   auth: PropTypes.object.isRequired
-// };
+
 const mapStateToProps = state => ({
-  // auth: state.auth,
   // error: state.error,
   userLocation: state.location.userLocation,
 })
 
-export default connect(mapStateToProps, {  getCurrentLocation, getCityBars })(Home);
+export default connect(mapStateToProps, {  getCurrentLocation, getRestaurants })(Home);

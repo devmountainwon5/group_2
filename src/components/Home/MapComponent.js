@@ -2,7 +2,7 @@ import React from "react";
 import { compose, withProps, withHandlers, withState  } from "recompose";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps";
 import {connect} from 'react-redux';
-import {getCurrentLocation, getCityBars} from '../../actions/locationActions'
+import {getCurrentLocation, getRestaurants} from '../../actions/locationActions'
 
 const MyMapComponent = (compose)(
     withProps({
@@ -50,7 +50,7 @@ const MyMapComponent = (compose)(
     }),
     )((props) => { 
         if (props.places.length > 0){
-            props.getBars(props.places)
+            props.getRestaurants(props.places)
         }
         return (        
             <GoogleMap
@@ -80,13 +80,13 @@ const MyMapComponent = (compose)(
             return (
                 <MyMapComponent
                     center={this.props.location}
-                    getBars={this.props.getCityBars}         
+                    getRestaurants={this.props.getRestaurants}         
                     />            
             )                           
         }
     }
     const mapStateToProps = state => ({
       location: state.location.userLocation,
-      localBars: state.location.localBars
+      localRestaurants: state.location.localRestaurants
     })
-    export default connect(mapStateToProps, { getCurrentLocation, getCityBars })(MyFancyComponent)
+    export default connect(mapStateToProps, { getCurrentLocation, getRestaurants })(MyFancyComponent)
