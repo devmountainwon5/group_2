@@ -62,7 +62,7 @@ app.use(express.static(path.join(__dirname, "/build")));
 app.post("/api/user", (req, res) => {
 	const db = req.app.get("db");
 
-	const { email, lastName, firstName, userName, profilePic } = req.body;
+	const { email, last_name, first_name, username, profilepic } = req.body;
 
 	db.user_table
 		.findOne({ email })
@@ -70,16 +70,19 @@ app.post("/api/user", (req, res) => {
 			if (!user)
 				return db.user_table.insert({
 					email,
-					lastName,
-					firstName,
-					userName,
-					profilePic
+					last_name,
+					first_name,
+					username,
+					profilepic
 				});
 		})
 		.then(() => {
-			db.user_table.then(() => {
-				res.send({ success: true });
-			});
+			debugger;
+
+			res.send({ success: true });
+		})
+		.catch(err => {
+			res.send({ success: false, err });
 		});
 });
 app.get("/*", (req, res) => {

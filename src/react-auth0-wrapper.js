@@ -36,10 +36,10 @@ export const Auth0Provider = ({
 				const user = await auth0FromHook.getUser();
 				const userObj = {
 					email: user.email,
-					lastName: user.family_name,
-					firstName: user.given_name,
-					userName: user.nickname,
-					profilePic: user.picture
+					last_name: user.family_name,
+					first_name: user.given_name,
+					username: user.nickname,
+					profilepic: user.picture
 				};
 				console.log(userObj);
 				setUser(user);
@@ -47,7 +47,7 @@ export const Auth0Provider = ({
 					console.log(res);
 					this.props.dispatch({
 						type: "user",
-						payload: res.data.user
+						payload: res.data.userObj
 					});
 				});
 			}
