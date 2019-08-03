@@ -34,9 +34,9 @@ export default function Card() {
             </CardActionArea>
 
             <CardActions>
-                {/* <IconButton aria-label="add to favorites">
+                <IconButton aria-label="add to favorites">
                     <FavoriteIcon />
-                </IconButton>  */}
+                </IconButton> 
                 <IconButton size="small" color="primary">
                     <DeleteIcon />
                 </IconButton>
