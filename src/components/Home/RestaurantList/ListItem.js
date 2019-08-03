@@ -13,6 +13,7 @@ export default function List (props) {
                 <h4>{props.name}</h4>
                 <h4>{props.rating}</h4>
                 <h5>{props.address}</h5>
+                <button className="btn btn-primary">ADD</button>
                 {/* </Link> */}
                
                 

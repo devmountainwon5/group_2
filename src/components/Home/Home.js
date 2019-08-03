@@ -41,8 +41,12 @@ class Home extends Component {
     let { locationReceived } = this.state;
     return (
       <div className="container">
+      <div className='content' >
         { locationReceived ? <MyFancyComponent className="mt-5"/> : <h2>Loading...</h2> }
+        </div>
+        <div className="leftCol">
         <RestaurantList />
+        </div>
       </div>
     );
   }
