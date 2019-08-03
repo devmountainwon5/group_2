@@ -8,4 +8,8 @@ export const getUser = () => {
 		username: userObj.username,
 		profilepic: userObj.profilepic
 	};
+	dispatch({
+		type: GET_USER,
+		payload: user
+	});
 };
