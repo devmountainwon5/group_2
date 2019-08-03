@@ -1,0 +1,18 @@
+.card {
+    width: 330px;
+    margin-bottom: 20px;
+    justify-content: flex-start;
+    float: left;
+    margin: 10px 65px;
+}
+
+.media {
+    height: 140px;
+}
+
+/* .faveList {
+    display: flex;
+    margin-bottom: 0;
+    justify-content: flex-start;
+    
+} */

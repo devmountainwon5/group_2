@@ -29,7 +29,7 @@ export class Home extends Component {
         return null;
       }
   
-      return <Map google={google} initialCenter={userLocation} zoom={10} />;
+	  return <Map google={google} initialCenter={userLocation} zoom={10} />;
     }
   }
   
