@@ -26,6 +26,7 @@ class Home extends Component {
 		}
 	}
 
+
 	componentWillMount() {
 		this.props.getCurrentLocation();
 	}
