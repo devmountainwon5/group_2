@@ -35,12 +35,12 @@ const colors = createMuiTheme({
 	}
 });
 
-const styles = theme => ({
-	root: {
-		// JSS uses px as the default units for this CSS property.
-		padding: theme.spacing(2) // = 8 * 2
-	}
-});
+// const styles = theme => ({
+// 	root: {
+// 		// JSS uses px as the default units for this CSS property.
+// 		padding: theme.spacing(2) // = 8 * 2
+// 	}
+// });
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -68,7 +68,6 @@ const NavBar = () => {
 
 	return (
 		<ThemeProvider className={classes.root} theme={colors}>
-			<spacing m="2rem" />
 			<AppBar position="static">
 				<Toolbar>
 					<Typography variant="h6" className={classes.title}>
@@ -82,25 +81,27 @@ const NavBar = () => {
 						)}
 
 						{isAuthenticated && (
-							<span>
-								<spacing m="2rem" />
-								<Button
-									variant="contained"
-									color="secondary"
-									className="nav-buttons">
-									<Link to="/">Home</Link>&nbsp;
-								</Button>
+							<span className="navbuttparent">
+								<span className="navbutt">
+									<Button
+										variant="contained"
+										color="secondary"
+										className="nav-buttons">
+										<Link to="/">Home</Link>&nbsp;
+									</Button>
+								</span>
+								<span className="navbutt">
+									<Button
+										variant="contained"
+										color="secondary"
+										className="nav-buttons">
+										<Link to="/profile">Profile</Link>
+										&nbsp;
+									</Button>
 
-								<Button
-									variant="contained"
-									color="secondary"
-									className="nav-buttons">
-									<Link to="/profile">Profile</Link>
-									&nbsp;
-								</Button>
-
-								{/* NEW - Add a link to the /external-api route */}
-								{/* <Link to="/external-api">External API</Link> */}
+									{/* NEW - Add a link to the /external-api route */}
+									{/* <Link to="/external-api">External API</Link> */}
+								</span>
 							</span>
 						)}
 
