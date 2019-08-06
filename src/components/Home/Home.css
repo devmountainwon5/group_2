@@ -1,0 +1,36 @@
+.container {
+	display: flex;
+	max-width: 2500px;
+}
+.content {
+	display: inline-block;
+	width: 80vw;
+	height: 2000px;
+}
+.mt-5 {
+	height: inherit;
+}
+.leftCol {
+	display: inline-block;
+	width: 390px;
+	height: 2000px;
+	/* float: left; */
+}
+.restaurant-list {
+	min-width: 390px;
+}
+.row {
+	min-width: inherit;
+}
+.card-deck {
+	min-width: inherit;
+}
+.card {
+	min-width: inherit;
+}
+.card-body {
+	min-width: inherit;
+}
+h4 {
+	min-width: inherit;
+}

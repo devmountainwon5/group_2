@@ -35,12 +35,12 @@ const colors = createMuiTheme({
 	}
 });
 
-const styles = theme => ({
-	root: {
-		// JSS uses px as the default units for this CSS property.
-		padding: theme.spacing(2) // = 8 * 2
-	}
-});
+// const styles = theme => ({
+// 	root: {
+// 		// JSS uses px as the default units for this CSS property.
+// 		padding: theme.spacing(2) // = 8 * 2
+// 	}
+// });
 
 const useStyles = makeStyles(theme => ({
 	root: {
