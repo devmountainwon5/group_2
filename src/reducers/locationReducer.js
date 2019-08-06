@@ -8,13 +8,13 @@ const initialState = {
 export default function(state=initialState, action){
   switch (action.type) {
     case GET_CURRENT_LOCATION:
-    console.log(action.payload)
+    // console.log(action.payload)
     return {
       ...state,
       userLocation: action.payload
     }
     case GET_RESTAURANTS:
-    console.log(action.payload)
+    // console.log(action.payload)
       return {
         ...state,
         localRestaurants: [
