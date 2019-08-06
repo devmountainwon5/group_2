@@ -7,6 +7,7 @@ const path = require('path');
 const jwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
 const addDeleteController = require('./controllers/add_delete_favorites');
+const edit_user = require('./controllers/edit_user');
 
 const app = express();
 
@@ -69,7 +70,7 @@ app.get('/*', (req, res) => {
 
 app.post('/api/favorites', addDeleteController.addFavorite);
 app.delete('/api/favorites_delete/:favorite_id', addDeleteController.deleteFavorite);
-
+app.put('/api/edit_user', edit_user.editUser);
 const port = PORT || 4000;
 
 app.listen(port, () => {
