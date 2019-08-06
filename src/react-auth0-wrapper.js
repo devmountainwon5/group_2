@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import createAuth0Client from "@auth0/auth0-spa-js";
-import { connect } from "react-redux";
-import { getUser } from "../../actions/userActions";
 
 const DEFAULT_REDIRECT_CALLBACK = () =>
 	window.history.replaceState({}, document.title, window.location.pathname);
@@ -20,7 +18,7 @@ export const Auth0Provider = ({
 	const [loading, setLoading] = useState(true);
 	const [popupOpen, setPopupOpen] = useState(false);
 
-	useEffect(() => {
+	useEffect(props => {
 		const initAuth0 = async () => {
 			const auth0FromHook = await createAuth0Client(initOptions);
 			setAuth0(auth0FromHook);
@@ -46,10 +44,10 @@ export const Auth0Provider = ({
 				setUser(user);
 				axios.post("/api/user", userObj).then(res => {
 					console.log(res);
-					this.props.dispatch({
-						type: "user",
-						payload: res.data.userObj
-					});
+					// props.dispatch({
+					// 	type: "user",
+					// 	payload: res.data.userObj
+					// });
 				});
 			}
 
@@ -81,6 +79,7 @@ export const Auth0Provider = ({
 		setIsAuthenticated(true);
 		setUser(user);
 	};
+
 	return (
 		<Auth0Context.Provider
 			value={{
@@ -100,8 +99,3 @@ export const Auth0Provider = ({
 		</Auth0Context.Provider>
 	);
 };
-
-export default connect(
-	Auth0Provider,
-	{ getUser }
-);

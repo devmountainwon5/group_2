@@ -6,6 +6,7 @@ const session = require("express-session");
 const path = require("path");
 const jwt = require("express-jwt");
 const jwksRsa = require("jwks-rsa");
+const user = require("./src/controllers/user");
 
 const app = express();
 
@@ -59,30 +60,28 @@ app.use(
 
 app.use(express.static(path.join(__dirname, "/build")));
 //ENDPOINTS BELOW
-app.post("/api/user", (req, res) => {
-	const db = req.app.get("db");
-
-	const { email, last_name, first_name, username, profilepic } = req.body;
-
-	db.user_table
-		.findOne({ email })
-		.then(user => {
-			if (!user)
-				return db.user_table.insert({
-					email,
-					last_name,
-					first_name,
-					username,
-					profilepic
-				});
-		})
-		.then(() => {
-			res.send({ success: true });
-		})
-		.catch(err => {
-			res.send({ success: false, err });
-		});
-});
+app.post("/api/user", user.user);
+// const db = req.app.get("db");
+// const { email, last_name, first_name, username, profilepic } = req.body;
+// db.user_table
+// 	.findOne({ email })
+// 	.then(user => {
+// 		if (!user)
+// 			return db.user_table.insert({
+// 				email,
+// 				last_name,
+// 				first_name,
+// 				username,
+// 				profilepic
+// 			});
+// 	})
+// 	.then(() => {
+// 		res.send({ success: true });
+// 	})
+// 	.catch(err => {
+// 		res.send({ success: false, err });
+// 	});
+app.get("/app/userGet", user.userGet);
 app.get("/*", (req, res) => {
 	res.sendFile("index.html", {
 		root: path.join(__dirname, "build")

@@ -6,4 +6,4 @@ export const CLEAR_CURRENT_LOCATION = "CLEAR_CURRENT_LOCATION";
 export const GET_ERRORS = "GET_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
-export const GET_USER = "user";
+export const GET_USER = "GET_USER";
