@@ -67,8 +67,8 @@ app.get('/*', (req, res) => {
   });
 });
 
-app.post('/favorites/add', addDeleteController.addFavorite);
-app.delete('/favorites/delete/:favorite_id', addDeleteController.deleteFavorite);
+app.post('/api/favorites', addDeleteController.addFavorite);
+app.delete('/api/favorites_delete/:favorite_id', addDeleteController.deleteFavorite);
 
 const port = PORT || 4000;
 
