@@ -1,23 +1,26 @@
 .container {
 	display: flex;
 	max-width: 2500px;
+	margin: 0px;
 }
 .content {
 	display: inline-block;
 	width: 80vw;
-	height: 2000px;
+	height: 1500px;
+	margin: 10px;
 }
 .mt-5 {
 	height: inherit;
 }
 .leftCol {
 	display: inline-block;
-	width: 390px;
+	width: 370px;
 	height: 2000px;
-	/* float: left; */
+	margin: 10px;
+	margin-left: 15px;
 }
 .restaurant-list {
-	min-width: 390px;
+	min-width: 370px;
 }
 .row {
 	min-width: inherit;
