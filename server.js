@@ -69,7 +69,7 @@ app.get('/*', (req, res) => {
 
 app.post('/api/favorites', addDeleteController.addFavorite);
 app.delete('/api/favorites_delete/:favorite_id', addDeleteController.deleteFavorite);
-app.get('/api/getfavorites', addDeleteController.getFavorites);
+app.post('/api/userfavorites', addDeleteController.getFavorites);
 
 const port = PORT || 4000;
 

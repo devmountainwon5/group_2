@@ -40,9 +40,9 @@ module.exports = {
 
     const { userEmail } = req.body;
 
-    dbInstance.getUser([userEmail])
+    dbInstance.get_user([userEmail])
     .then( results => {
-        dbInstance.getFavorites([results.data[0].id])
+        dbInstance.get_favorites([results[0].id])
         .then( results => {
             res.status(200).send(results)
         })
