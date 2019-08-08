@@ -3,12 +3,19 @@ import { useAuth0 } from './../../react-auth0-wrapper';
 import Favorites from "../Favorites/Favorites";
 import "./Profile.css"
 
-const Profile = () => {
-  const { loading, user } = useAuth0();
 
-  if (loading || !user) {
-    return 'Loading...';
-  }
+const Profile = () => {
+	const { loading, user } = useAuth0();
+	// componentDidMount(){
+	//   console.log
+	// }
+	if (loading || !user) {
+		return "Loading...";
+	}
+
+	return (
+		<>
+			<img src={user.picture} alt='Profile' />
 
   return (
     <div>
@@ -29,4 +36,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default connect(state => state)(Profile);
