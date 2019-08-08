@@ -3,45 +3,108 @@
 	max-width: 100vw;
 	margin: 0px;
 	padding: 0px;
-	max-height: 100vh;
+	max-height: 90vh;
 }
 .content {
 	display: inline-block;
-	width: 80vw;
+	width: 78vw;
+	height: 90%;
 	margin: 10px;
-	margin-right: -5px;
+	margin-right: -10px;
 }
 /* .mt-5 {
 	height: inherit;
 } */
 .leftCol {
 	display: inline-block;
-	width: 20%;
+	width: 25vw;
 	height: 92.5vh;
 	margin: 0px;
 	padding: 0px;
 	margin-top: 10px;
-	overflow-y: auto;
+	overflow-y: scroll;
 	overflow-x: hidden;
 }
 .restaurant-list {
 	margin: 0px;
 	min-width: 395px;
+	max-width: 395px;
 }
 .row {
 	margin: 0px;
 	min-width: inherit;
+	max-width: inherit;
+	font-size: inherit;
 }
 .card-deck {
 	margin-left: 10px;
 	min-width: inherit;
+	max-width: inherit;
+	font-size: inherit;
 }
 .card {
 	min-width: inherit;
+	max-width: inherit;
+	font-size: inherit;
 }
 .card-body {
 	min-width: inherit;
+	max-width: inherit;
+	font-size: inherit;
 }
 h4 {
 	min-width: inherit;
+	max-width: inherit;
 }
+/* @media (max-width: 500px) {
+	.content {
+		width: 100vw;
+		height: 80vh;
+	}
+	.leftCol {
+		width: 90vw;
+		height: 15vh;
+		overflow-y: hidden;
+		overflow-x: auto;
+		display: flex;
+		inset-inline: bottom;
+		justify-content: space-between;
+		flex-direction: row;
+	}
+	.restaurant-list {
+		display: flex;
+
+		margin: 0px;
+		min-width: 150px;
+		max-width: 150px;
+		font-size: 10px;
+		max-height: 100px;
+	}
+	.row {
+		margin: 0px;
+		min-width: inherit;
+		max-width: inherit;
+		font-size: inherit;
+	}
+	.card-deck {
+		margin-left: 10px;
+		min-width: inherit;
+		max-width: inherit;
+		font-size: inherit;
+	}
+	.card {
+		min-width: inherit;
+		max-width: inherit;
+		font-size: inherit;
+	}
+	.card-body {
+		min-width: inherit;
+		max-width: inherit;
+		font-size: inherit;
+	}
+	h4 {
+		min-width: inherit;
+		max-width: inherit;
+		font-size: inherit;
+	}
+} */
