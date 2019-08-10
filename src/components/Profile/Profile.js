@@ -10,12 +10,10 @@ const Profile = () => {
 		return "Loading...";
 	}
 
-
-
 	return (
 		<div>
 			<div className='profile'>
-				<img src={user.picture} alt='Profile' />
+				<img src={user.picture} alt='Profile' className='pic' />
 
 				<h2>{user.name}</h2>
 				<p>{user.email}</p>
