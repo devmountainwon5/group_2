@@ -10,9 +10,7 @@ const Profile = () => {
 		return "Loading...";
 	}
 
-	// return (
-	// 	<>
-	// 		<img src={user.picture} alt='Profile' />
+
 
 	return (
 		<div>
