@@ -41,7 +41,8 @@ export const getRestaurants = places => dispatch => {
 			address: place.vicinity,
 			lat: place.geometry.location.lat(),
 			lng: place.geometry.location.lng(),
-			rating: place.rating
+			rating: place.rating,
+			place_id: place.place_id
 		};
 		restaurant.push(singleRestaurant);
 	});
