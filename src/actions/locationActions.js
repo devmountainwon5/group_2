@@ -20,12 +20,15 @@ export const getCurrentLocation = () => dispatch => {
 			}
 		});
 	};
-	let error = err => {
+	let error = (err) => {
 		dispatch({
-			type: GET_ERRORS,
-			payload: err.response.data
-		});
-	};
+		  type: GET_CURRENT_LOCATION,
+		  payload: {
+			lat: 37.773972,
+			lng:-122.431297
+		  }
+		})
+	  }
 	navigator.geolocation.getCurrentPosition(success, error, options);
 };
 
