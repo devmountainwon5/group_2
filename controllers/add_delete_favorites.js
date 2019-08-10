@@ -4,7 +4,7 @@ module.exports = {
 
        const { res_name, res_address, link, img, user_id } = req.body;
 
-       dbInstance.check_favorite_exists([res_name, res_address])
+       dbInstance.check_favorite_exists([res_name, res_address, user_id])
        .then( results => {
            if (!results[0]) {    
                dbInstance.add_favorite([res_name, res_address, link, img, user_id])
