@@ -23,7 +23,7 @@ export const getCurrentLocation = () => dispatch => {
 	let error = err => {
 		dispatch({
 			type: GET_ERRORS,
-			payload: err.response.data
+			payload: err
 		});
 	};
 	navigator.geolocation.getCurrentPosition(success, error, options);
