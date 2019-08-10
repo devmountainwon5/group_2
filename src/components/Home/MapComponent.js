@@ -1,3 +1,4 @@
+
 import React from "react";
 import { compose, withProps, withHandlers, withState } from "recompose";
 import {
@@ -12,6 +13,8 @@ import {
 	getCurrentLocation,
 	getRestaurants
 } from "../../actions/locationActions";
+const { SearchBox } = require("react-google-maps/lib/components/places/SearchBox");
+const _ = require("lodash");
 
 const MyMapComponent = compose(
 	withProps({
@@ -33,6 +36,28 @@ const MyMapComponent = compose(
 			onMapMounted: () => ref => {
 				refs.map = ref;
 			},
+			onPlacesChanged: () => {
+				const places = refs.searchBox.getPlaces();
+				const bounds = new window.google.maps.LatLngBounds();
+			
+				places.forEach(place => {
+				  if (place.geometry.viewport) {
+					bounds.union(place.geometry.viewport)
+				  } else {
+					bounds.extend(place.geometry.location)
+				  }
+				});
+				const nextMarkers = places.map(place => ({
+				  position: place.geometry.location,
+				}));
+				const nextCenter = _.get(nextMarkers, '0.position', this.state.center);
+			
+				this.setState({
+				  center: nextCenter,
+				  markers: nextMarkers,
+				});
+				// refs.map.fitBounds(bounds);
+			  },
 			fetchPlaces: ({ updatePlaces }) => {
 				const google = window.google;
 				const bounds = refs.map.getBounds();
@@ -70,6 +95,30 @@ const MyMapComponent = compose(
 			ref={props.onMapMounted}
 			defaultZoom={15}
 			defaultCenter={props.center}>
+			<SearchBox
+      ref={props.onSearchBoxMounted}
+      bounds={props.bounds}
+      controlPosition={window.google.maps.ControlPosition.TOP_RIGHT}
+      onPlacesChanged={props.onPlacesChanged}
+    >
+      <input
+        type="text"
+        placeholder="Enter City..."
+        style={{
+          boxSizing: `border-box`,
+          border: `1px solid transparent`,
+          width: `240px`,
+          height: `32px`,
+          marginTop: `27px`,
+          padding: `0 12px`,
+          borderRadius: `3px`,
+          boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
+          fontSize: `14px`,
+          outline: `none`,
+          textOverflow: `ellipses`,
+        }}
+      />
+    </SearchBox>
 			{props.places &&
 				props.places.map((place, i) => (
 					<Marker
@@ -87,9 +136,11 @@ const MyMapComponent = compose(
 							</InfoWindow>
 						)}
 					</Marker>
+					
 				))}
 			{console.log(props.selectedPlace)}
 		</GoogleMap>
+
 	);
 });
 
