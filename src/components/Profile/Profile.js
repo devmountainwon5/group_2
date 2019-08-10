@@ -13,9 +13,6 @@ const Profile = () => {
 		return "Loading...";
 	}
 
-	return (
-		<>
-			<img src={user.picture} alt='Profile' />
 
   return (
     <div>
@@ -36,4 +33,4 @@ const Profile = () => {
   );
 };
 
-export default connect(state => state)(Profile);
+export default Profile;
