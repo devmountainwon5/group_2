@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require('express');
 const massive = require('massive');
 const cors = require('cors');
@@ -35,9 +36,9 @@ app.get("/api/external", checkJwt, (req, res) => {
 	});
 });
 
-require("dotenv").config();
 
 const { PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
+
 
 massive(CONNECTION_STRING)
 	.then(dbInstance => {
@@ -74,7 +75,7 @@ app.post('/api/favorites', addDeleteController.addFavorite);
 app.delete('/api/favorites_delete/:favorite_id', addDeleteController.deleteFavorite);
 app.post('/api/userfavorites', addDeleteController.getFavorites);
 
-const port = PORT || 4000;
+const port = PORT || 4004;
 
 app.listen(port, () => {
 	console.log(`Liftoff on port ${port}`);

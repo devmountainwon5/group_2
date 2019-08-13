@@ -17,15 +17,17 @@ class Card extends Component{
     constructor(props){
         super(props)
         this.state = {
-            favorites: [{name: 'Lauren'}, {name: 'Woo'}]
+            favorites: [{name: "Lauren"}, {name: "Woo"}, {name: "hello"}]
         };
 
         this.deleteFavorite = this.deleteFavorite.bind(this);
     }
 
     componentDidMount(){
-        axios.get(`/api/favorites/`)
+        console.log("working!", this.props.user)
+        axios.post(`/api/userfavorites`, {userEmail: this.props.user})
         .then(({data})=>{
+            console.log(data);
             if(data.success){
                 this.setState({
                    favorites: data.favorites
@@ -53,7 +55,9 @@ class Card extends Component{
     render () {
 
         const favoritesCard = this.state.favorites.map((fave, i)=>{
-            return (<Cards className={"card"} >
+            return (
+            
+            <Cards className={"card"} >
                 
             <CardActionArea>
                 <CardMedia
@@ -64,10 +68,10 @@ class Card extends Component{
                     {fave.name}
                 </Typography>
                 <Typography gutterBottom variant="h5" component="h3">
-                    {this.rating}
+                    {fave.rating}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                    {this.address}
+                    {fave.address}
                 </Typography>
                 </CardContent>
             </CardActionArea>
@@ -81,7 +85,8 @@ class Card extends Component{
                 </IconButton>
             </CardActions>
 
-            </Cards>)
+            </Cards>
+            )
           })
 
     return (

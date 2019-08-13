@@ -1,9 +1,15 @@
+.faveList {
+    /* display: flex; */
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 .card {
-    width: 330px;
+    width: 30%;
     margin-bottom: 20px;
     justify-content: flex-start;
     float: left;
-    margin: 10px 65px;
+    margin: 10px 20px;
 }
 
 .media {
