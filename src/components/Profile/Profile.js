@@ -19,7 +19,7 @@ const Profile = () => {
       <p>{user.email}</p>
       </div>
 
-      <Favorites/>
+      <Favorites user={user.email}/>
       
       
     </div>

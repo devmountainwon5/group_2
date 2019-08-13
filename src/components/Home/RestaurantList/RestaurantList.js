@@ -14,11 +14,13 @@ class RestaurantList extends Component {
 					address={e.address}
 					rating={e.rating}
 					picture={e.picture}
+					place_id={e.place_id}
 				/>
 			);
 		});
+
 		return (
-			<div className="restaurant-list">
+			<div className='restaurant-list'>
 				{console.log(this.props.localRestaurants)}
 				{list}
 			</div>
