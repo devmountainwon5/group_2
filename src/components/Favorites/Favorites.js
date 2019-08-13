@@ -17,14 +17,14 @@ class Card extends Component{
     constructor(props){
         super(props)
         this.state = {
-            favorites: []
+            favorites: [{name: 'Lauren'}, {name: 'Woo'}]
         };
 
         this.deleteFavorite = this.deleteFavorite.bind(this);
     }
 
     componentDidMount(){
-        axios.get(`/api/userfavorites/`)
+        axios.get(`/api/favorites/`)
         .then(({data})=>{
             if(data.success){
                 this.setState({
@@ -36,24 +36,24 @@ class Card extends Component{
         })
     }
 
-    deleteFavorite() {
-        axios.delete(`/api/favorites_delete/:favorite_id`)
-          .then(res =>{
-            this.setState({
-              favorites: res.data
-            });
-          });
-        }
+    deleteFavorite = favorite_id => {
+        axios
+            .delete(`/api/favorites_delete/${favorite_id}`)
+            .then(res => {
+                if (res.data.success) {
+                    this.props.dispatch({
+                        type: "favorites",
+                        payload: res.data
+                    });
+                }
+            })
+            .catch(error => console.log(error));
+    };
 
     render () {
 
-        const favoritesCard = this.state.favorites.map((e, i)=>{
-            return <Card key={i} title={e.title} image={e.image} address={e.address} rating={e.rating} delete={this.delete} /> 
-          })
-
-    return (
-        <div className={"faveList"}>
-            <Cards className={"card"} {...favoritesCard} >
+        const favoritesCard = this.state.favorites.map((fave, i)=>{
+            return (<Cards className={"card"} >
                 
             <CardActionArea>
                 <CardMedia
@@ -61,10 +61,13 @@ class Card extends Component{
                 />
                 <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
-                    Restaurant
+                    {fave.name}
+                </Typography>
+                <Typography gutterBottom variant="h5" component="h3">
+                    {this.rating}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                    Description of restaurant? Or miles from users location. 
+                    {this.address}
                 </Typography>
                 </CardContent>
             </CardActionArea>
@@ -78,7 +81,12 @@ class Card extends Component{
                 </IconButton>
             </CardActions>
 
-            </Cards>
+            </Cards>)
+          })
+
+    return (
+        <div className={"faveList"}>
+            {favoritesCard}
         </div>
     );
     }
