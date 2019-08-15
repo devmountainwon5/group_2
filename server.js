@@ -9,6 +9,7 @@ const jwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
 const addDeleteController = require('./controllers/add_delete_favorites');
 const user = require("./src/controllers/user");
+const comments = require('./controllers/comments');
 
 const app = express();
 
@@ -75,7 +76,11 @@ app.post('/api/favorites', addDeleteController.addFavorite);
 app.delete('/api/favorites_delete/:favorite_id', addDeleteController.deleteFavorite);
 app.post('/api/userfavorites', addDeleteController.getFavorites);
 
-const port = PORT || 4004;
+app.post('/api/favorite_comments', comments.getComments);
+app.post('/api/add_comment', comments.addComment);
+app.delete('/api/delete_comment', comments.deleteComment);
+
+const port = PORT || 4000;
 
 app.listen(port, () => {
 	console.log(`Liftoff on port ${port}`);
