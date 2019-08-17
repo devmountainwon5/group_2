@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../Home.css';
+import { useAuth0 } from '../../../react-auth0-wrapper';
 import axios from 'axios';
+import Userget from './Userget';
 // import { Link } from "react-router-dom";
 // import SingleView from "./src/components/Home/SingleView/SingleView";
 
@@ -11,31 +13,34 @@ class List extends Component {
   state = {
     picture: this.props.picture,
     name: this.props.name,
-    rating: this.props.rating,
     address: this.props.address,
-    place_id: this.props.place_id
+    user_id: this.props.user_id,
+    link: this.props.link
+
+    // place_id: this.props.place_id
   };
 
   addFavs = () => {
-    const { picture, name, rating, address, place_id } = this.state;
+    const { picture, name, address } = this.props;
     const favs = {
-      picture,
-      name,
-      rating,
-      address,
-      place_id
+      img: picture,
+      res_name: name,
+      res_address: address,
+      link: ''
     };
-    axios.post('/api/favorites', favs).then(backendRes => {
-      debugger;
-      //checking successful registration
-      if (backendRes.data.success) {
-        //dispatch obj to store
-        this.props.dispatch({
-          type: 'favorites',
-          payload: backendRes.data
-        });
-      }
-    });
+    if (true) {
+      axios.post('/api/favorites', favs).then(results => {
+        console.log(results);
+        //checking successful registration
+        if (results.data.success) {
+          //dispatch obj to store
+          this.props.dispatch({
+            type: 'favorites',
+            payload: results.data
+          });
+        }
+      });
+    }
   };
 
   render() {
