@@ -17,28 +17,33 @@ class Card extends Component{
     constructor(props){
         super(props)
         this.state = {
-            favorites: [{name: "Lauren"}, {name: "Woo"}, {name: "hello"}]
+            favorites: {
+                picture: this.props.picture,
+                name: this.props.name,
+                address: this.props.address,
+                user_id: this.props.user_id,
+                link: this.props.link
+            }
         };
 
         this.deleteFavorite = this.deleteFavorite.bind(this);
     }
 
     componentDidMount(){
-        console.log("working!", this.props.user)
         axios.post(`/api/userfavorites`, {userEmail: this.props.user})
-        .then(({data})=>{
-            console.log(data);
-            if(data.success){
-                this.setState({
-                   favorites: data.favorites
-                })
+        .then((data)=>{
+            if(data){
+                this.props.dispatch({
+                    type: "favorites",
+                    payload: data
+                });
             } else{
                 alert('uh oh! Your favorites went missing')
             }
         })
     }
 
-    deleteFavorite = favorite_id => {
+    deleteFavorite(favorite_id){
         axios
             .delete(`/api/favorites_delete/${favorite_id}`)
             .then(res => {
@@ -56,11 +61,10 @@ class Card extends Component{
 
         const favoritesCard = this.state.favorites.map((fave, i)=>{
             return (
-            
             <Cards className={"card"} >
                 
-            <CardActionArea>
-                <CardMedia
+            <CardActionArea >
+                <CardMedia 
                 className={"media"}
                 />
                 <CardContent>
@@ -68,10 +72,10 @@ class Card extends Component{
                     {fave.name}
                 </Typography>
                 <Typography gutterBottom variant="h5" component="h3">
-                    {fave.rating}
+                    {fave.address}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
-                    {fave.address}
+                    {fave.link}
                 </Typography>
                 </CardContent>
             </CardActionArea>

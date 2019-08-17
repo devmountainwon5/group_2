@@ -1,8 +1,10 @@
-.pic {
+.user-img {
 	border-radius: 250px;
 }
 
 .profile {
 	margin: 20px auto;
 	text-align: center;
+	width: 100%;
+	height: auto;
 }
