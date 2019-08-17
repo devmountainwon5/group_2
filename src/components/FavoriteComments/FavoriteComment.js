@@ -31,7 +31,7 @@ const FavoriteComment = props => {
     getUserId();
     console.log(comments)
     let commentList = comments.map( e => {
-        return <SingleComment name={e.first_name} comment={ e.comment } date={ 'no date' } userId={e.user_id} loggedInUserId={userId} />
+        return <SingleComment name={e.first_name} comment={ e.comment } date={ 'no date' } userId={e.user_id} loggedInUserId={userId} commentId={e.comment_id} />
     })
     return (
         <div>
