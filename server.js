@@ -6,6 +6,7 @@ const session = require("express-session");
 const path = require("path");
 const jwt = require("express-jwt");
 const jwksRsa = require("jwks-rsa");
+const addDeleteController = require("./controllers/add_delete_favorites");
 const user = require("./src/controllers/user");
 
 const app = express();
@@ -69,10 +70,12 @@ app.get("/*", (req, res) => {
 	});
 });
 
-
-
-
-
+app.post("/api/favorites", addDeleteController.addFavorite);
+app.delete(
+	"/api/favorites_delete/:favorite_id",
+	addDeleteController.deleteFavorite
+);
+app.post("/api/userfavorites", addDeleteController.getFavorites);
 
 const port = PORT || 4000;
 
