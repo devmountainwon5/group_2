@@ -19,10 +19,10 @@ module.exports = {
 						})
 						.then(newUser => {
 							console.log(newUser);
-							req.session.id = user.id;
+							req.session.user_id = newUser.id;
 						});
 				} else {
-					req.session.id = user.id;
+					req.session.user_id = user.id;
 				}
 			})
 			.then(() => {
