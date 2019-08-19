@@ -1,9 +1,19 @@
 import React from 'react';
 import './SingleComment.css'
 import { useAuth0 } from '../../../react-auth0-wrapper';
+import Axios from 'axios';
 
 const SingleComment = props => {
-    let deletable = props.userId === props.loggedInUserId ? <div>X</div> : <div></div>;
+    const deleteComment = () => {
+        Axios.post('/api/delete_comment', { userEmail: props.userEmail, comment_id: props.comment_id })
+        .then( results => {
+            console.log(results)
+        })
+        .catch( err => {
+            window.alert(err)
+        })
+    }
+    let deletable = props.userId === props.loggedInUserId ? <div onClick={() => deleteComment()}>X</div> : <div></div>;
     return (
         <div>
             <div>
