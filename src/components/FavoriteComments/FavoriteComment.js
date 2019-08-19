@@ -7,18 +7,10 @@ import axios from 'axios';
 
 const FavoriteComment = props => {
     const { loading, user } = useAuth0();
-    const [userEmail, setUserEmail] = useState(null);
-    const [userId, setUserId] = useState(null);
     const [comments, setComments] = useState([]);
     const [placeId, setPlaceId] = useState(null);
-    setPlaceId(props.placeId);
-    const getComments = () => {
-        axios.post('/api/favorite_comments', { place_id: placeId })
-        .then( comments => {
-            setComments(comments.data)
-        })
-    }
-    getComments();
+    const [userEmail, setUserEmail] = useState(null);
+    const [userId, setUserId] = useState(null);
     if (user) {
         setUserEmail(user.email)
     }
@@ -29,6 +21,16 @@ const FavoriteComment = props => {
         })
     }
     getUserId();
+
+
+    setPlaceId(props.placeId);
+    const getComments = () => {
+        axios.post('/api/favorite_comments', { place_id: placeId })
+        .then( comments => {
+            setComments(comments.data)
+        })
+    }
+    getComments();
     console.log(comments)
     let commentList = comments.map( e => {
         return <SingleComment name={e.first_name} comment={ e.comment } date={ 'no date' } userId={e.user_id} loggedInUserId={userId} commentId={e.comment_id} />

@@ -1,6 +1,5 @@
 module.exports = {
     getUser: (req, res, next) => {
-        debugger
         const dbInstance = req.app.get('db');
 
         const { userEmail } = req.body;

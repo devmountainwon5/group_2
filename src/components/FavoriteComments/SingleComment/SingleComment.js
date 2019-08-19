@@ -1,5 +1,6 @@
 import React from 'react';
 import './SingleComment.css'
+import { useAuth0 } from '../../../react-auth0-wrapper';
 
 const SingleComment = props => {
     let deletable = props.userId === props.loggedInUserId ? <div>X</div> : <div></div>;
