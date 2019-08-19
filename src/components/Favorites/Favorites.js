@@ -10,11 +10,15 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import DeleteOutlineOutlinedIcon from '@material-ui/icons/DeleteOutlineOutlined';
 import AddCommentOutlinedIcon from '@material-ui/icons/AddCommentOutlined'
 import './Favorites.css';
+import axios from 'axios';
+import SingleComment from './singleComment/singleComment';
 
 
 export default function Card(props) {
+    const [showComments, setShowComments] = useState(false)
     const [addCommentInput, setAddCommentInput] = useState('');
     const [showCommentBox, setShowCommentBox] = useState(false);
+    const [comments, setComments] = useState([])
 
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
@@ -22,10 +26,25 @@ export default function Card(props) {
     let yyyy = today.getFullYear();
 
     let commentDate = mm + '/' + dd + '/' + yyyy;
-
-    const addComment = () => {
-        axios.post('/api/add_comment', {userEmail: props.userEmail, place_id: props.place_id, date: commentDate, comment: addCommentInput})
+    const getComments = () => {
+        axios.post('/api/favorite_comments', { place_id: props.place_id })
+        .then( results => {
+            setComments(results.data)
+        })
+        .catch( err => {
+            window.alert(err)
+        })
     }
+    getComments();
+
+    const addComment = async () => {
+        await axios.post('/api/add_comment', {userEmail: props.userEmail, place_id: props.place_id, date: commentDate, comment: addCommentInput})
+    }
+    let showCommentsBox = showComments
+    ? comments.map( e => {
+        return <SingleComment author={e.first_name} date={e.created_date} comment={e.comment} pic={e.profilepic} />
+    })
+    : <div></div>;
     
     let addCommentBox = showCommentBox
     ? <div>
@@ -33,7 +52,7 @@ export default function Card(props) {
         <textarea rows='8' onChange={ e => {setAddCommentInput(e.target.value)}}/>
         <div>
             <button onClick={() => setShowCommentBox(false)}>Cancel</button>
-            <button onClick={() => addComment()}>Add Comment</button>
+            <button onClick={() => {setShowCommentBox(false); addComment(); getComments();}}>Add Comment</button>
         </div>
     </div>
     : <div></div>;
@@ -59,16 +78,24 @@ export default function Card(props) {
             </CardActionArea>
 
             <CardActions>
-                <IconButton size="small" color="primary">
-                    <DeleteOutlineOutlinedIcon />
-                </IconButton>
-                <IconButton size="small" color="primary"style={{marginTop: '3px'}}>
-                    <AddCommentOutlinedIcon onClick={() => setShowCommentBox(true)}/>
-                </IconButton>
+                <div>
+                    <IconButton size="small" color="primary">
+                        <DeleteOutlineOutlinedIcon />
+                    </IconButton>
+                    <IconButton size="small" color="primary"style={{marginTop: '3px'}}>
+                        <AddCommentOutlinedIcon onClick={() => setShowCommentBox(true)}/>
+                    </IconButton>
+                </div>
+                <div onClick={() => setShowCommentBox(true)}>
+                    Comments ({comments.length})
+                </div>
             </CardActions>
+
+            
 
             </Cards>
             {addCommentBox}
+            {showCommentsBox}
         </div>
     );
 

@@ -32,7 +32,7 @@ const Profile = () => {
                 <p>{user.email}</p>
             </div>
 
-            <Favorites />
+            <Favorites place_id='ChIJi1LOhMKxEmsRA1xvD0eBi-A' userEmail={userEmail} restaurantName='Pizza Hut' />
             <Favorites />
             <Favorites />
         </div>
