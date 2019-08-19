@@ -2,25 +2,46 @@ module.exports = {
    addFavorite: (req, res, next) => {
        const dbInstance = req.app.get('db');
 
-       const { res_name, res_address, link, img, user_id } = req.body;
-
-       dbInstance.check_favorite_exists([res_name, res_address, user_id])
+       const { res_name, res_address, place_id, res_pic, userEmail } = req.body;
+       dbInstance.get_user([userEmail])
        .then( results => {
-           if (!results[0]) {    
-               dbInstance.add_favorite([res_name, res_address, link, img, user_id])
-               .then( results => {
-                   res.status(200).send(results.data)
-               })
-               .catch( err => {        
-                   res.status(500).send(err)
-               })
-           } else {
-               res.status(200).send('Favorite already exists');
-           };
+           let user_id = results[0].id;
+
+           dbInstance.check_favorite_exists([place_id])
+            .then( results => {
+                if (!results[0]) {    
+                    dbInstance.add_favorite([res_name, res_address, res_pic, place_id])
+                    .then( results => {
+                        dbInstance.add_to_user([user_id, results[0].favorite_id])
+                        .then( results => {
+                            res.status(200).send(results)
+                        })
+                        .catch( err => {
+                            res.status(500).send(err)
+                        })
+                    })
+                    .catch( err => {        
+                        res.status(500).send(err)
+                    })
+                } else {
+                     dbInstance.add_to_user([user_id, results[0].favorite_id])
+                        .then( results => {
+                            res.status(200).send(results)
+                        })
+                        .catch( err => {
+                            res.status(500).send(err)
+                        })
+                };
+            })
+            .catch( err => {
+                res.status(500).send(err)
+            });
        })
        .catch( err => {
-           res.status(500).send(err)
-       });
+           res.status(500).send(err);
+       })
+
+       
    },
    deleteFavorite: (req, res, next) => {
        const dbInstance = req.app.get('db');
