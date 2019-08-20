@@ -8,7 +8,7 @@
 .content {
 	width: 100%;
 	margin: 0;
-	height: 60%;
+	height: 100vh;
 }
 .leftCol {
 	display: flex;
@@ -18,15 +18,15 @@
 	position: fixed;
 	bottom: 0;
 	width: inherit;
-	height: 25%;
-	margin: 1% 0.5%;
-	margin-bottom: 1px;
-	padding: 1px;
+	height: 30%;
+	margin: 1%;
+	margin-bottom: 15px;
+	padding: 15px;
 	overflow-x: auto;
 	overflow-y: hidden;
+	padding-bottom: 20px;
 }
 .restaurant-list {
-	height: 98%;
 	margin: 0.15%;
 	margin-bottom: 2%;
 	display: flex;
@@ -36,8 +36,8 @@
 	width: inherit;
 	height: 100%;
 	margin: 1% 1%;
-	padding: 0;
-
+	padding: 2%;
+	padding-bottom: 15px;
 	justify-items: center;
 	border-spacing: 0;
 }
@@ -46,7 +46,7 @@
 	max-width: 20%;
 	min-height: 100%;
 	margin: 5px;
-	padding: 0;
+	padding-bottom: 15px;
 	display: flex;
 	flex-direction: row;
 }
@@ -55,6 +55,7 @@
 	min-height: 100%;
 	min-width: 100%;
 	border-spacing: 0;
+	padding-bottom: 15px;
 }
 .card-body {
 	display: flex;
@@ -63,9 +64,11 @@
 	min-height: inherit;
 	min-width: inherit;
 	margin: 0;
+	padding-bottom: 15px;
 }
 .btn {
 	margin: 5px;
+	margin-bottom: 20px;
 	margin-top: 10px;
 }
 
@@ -81,7 +84,7 @@
 	.content {
 		width: 100%;
 		margin: 0;
-		height: 60%;
+		height: 100vh;
 	}
 	.leftCol {
 		display: flex;
@@ -99,7 +102,7 @@
 		overflow-y: hidden;
 	}
 	.restaurant-list {
-		height: 98%;
+		height: 100%;
 		margin: 0.15%;
 		margin-bottom: 5%;
 		display: flex;
@@ -108,26 +111,25 @@
 		flex-direction: row;
 		width: inherit;
 		height: 100%;
-		margin: 1% 0.5%;
-		padding: 0;
-
+		padding: 2%;
+		padding-bottom: 15px;
 		justify-items: center;
-		border-spacing: 0;
 	}
 	.row {
 		min-width: 40%;
 		max-width: 40%;
 		min-height: 100%;
-		margin: 0;
-		padding: 0;
+		margin: 0px;
+		padding-bottom: 5px;
 		display: flex;
 		flex-direction: row;
 	}
 	.card-deck {
-		margin: -1%;
+		display: flex;
+		align-items: stretch;
+		padding: 0.5px;
 		min-height: 100%;
 		min-width: 100%;
-		border-spacing: 0;
 	}
 	.card-body {
 		display: flex;
@@ -135,21 +137,26 @@
 		justify-content: space-evenly;
 		min-height: inherit;
 		min-width: inherit;
-		margin: -5%;
+		margin: -7px;
+		margin-top: -10px;
+		margin-bottom: 2px;
+		padding-bottom: 5px;
 	}
+
 	.btn {
+		justify-content: center;
 		padding: 4px;
-		margin: 5px;
-		margin-top: 0px;
-		width: 40%;
-		height: 20%;
-		font-size: 0.55rem;
+		margin: 1px;
+		/* margin-top: -15px; */
+		width: 45%;
+		height: 35%;
+		font-size: 0.5rem;
 	}
 	h4 {
-		font-size: 0.75rem;
+		font-size: 0.6rem;
 	}
 	h5 {
-		font-size: 0.75rem;
+		font-size: 0.6rem;
 	}
 }
 
@@ -165,7 +172,7 @@
 	.content {
 		width: 100%;
 		margin: 0;
-		height: 60%;
+		height: 100vh;
 	}
 	.leftCol {
 		display: flex;
@@ -176,7 +183,7 @@
 		bottom: 0;
 		width: inherit;
 		height: 20%;
-		margin: 1% 0.5%;
+		margin: 1%;
 		margin-bottom: 5px;
 		padding: 0;
 		overflow-x: auto;
@@ -192,48 +199,52 @@
 		flex-direction: row;
 		width: inherit;
 		height: 100%;
-		margin: 1% 0.5%;
+		margin: 1%;
 		padding: 0;
 
 		justify-items: center;
-		border-spacing: 0;
 	}
 	.row {
 		min-width: 40%;
 		max-width: 40%;
 		min-height: 100%;
 		margin: 0;
-		padding: 0;
+		padding-bottom: 5px;
 		display: flex;
 		flex-direction: row;
 	}
 	.card-deck {
-		margin: -1%;
+		display: flex;
+		align-items: stretch;
+		padding: 0.5px;
 		min-height: 100%;
 		min-width: 100%;
-		border-spacing: 0;
 	}
 	.card-body {
 		display: flex;
 		flex-direction: column;
 		justify-content: space-evenly;
+		align-items: stretch;
 		min-height: inherit;
 		min-width: inherit;
-		margin: -5%;
+		margin-top: -10px;
+		margin-left: -10px;
+		padding-bottom: 5px;
+		font-size: 80%;
 	}
 	.btn {
-		padding: 4px;
-		margin: 5px;
-		margin-top: 0px;
-		width: 40%;
-		height: 20%;
-		font-size: 0.55rem;
+		padding: 5px;
+		margin: 0.5px;
+		margin-top: 1px;
+		width: 50%;
+		height: 80%;
+		font-size: 90%;
 	}
 	h4 {
-		font-size: 0.75rem;
+		font-size: 0.9rem;
 	}
 	h5 {
-		font-size: 0.75rem;
+		font-size: 0.9rem;
 	}
 }
 

@@ -16,7 +16,7 @@ export default function List(props) {
 						<h4>{props.rating}/5 Stars</h4>
 						<h5>{props.address}</h5>
 						<div>
-							<button className="btn btn-primary">ADD</button>
+							<button className="btn btn-primary">Add</button>
 							<a
 								target="blank"
 								href={
