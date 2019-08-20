@@ -15,7 +15,7 @@ module.exports = {
     addComment: (req, res, next) => {
         const dbInstance = req.app.get('db');
 
-        const { userEmail, place_id, comment, date } = req.body;
+        const { userEmail, place_id, comment, created_date } = req.body;
 
         dbInstance.get_user([userEmail])
        .then( results => {
@@ -25,7 +25,7 @@ module.exports = {
            .then( results => {
                let favorite_id = results[0].favorite_id;
 
-               dbInstance.add_comment([user_id, favorite_id, comment, date])
+               dbInstance.add_comment([user_id, favorite_id, comment, created_date])
                .then( results => {
                    res.status(200).send(results)
                })

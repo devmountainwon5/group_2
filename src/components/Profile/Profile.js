@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth0 } from "./../../react-auth0-wrapper";
 import Favorites from "../Favorites/Favorites";
 import axios from "axios";
@@ -8,20 +8,29 @@ const Profile = () => {
     const { loading, user } = useAuth0();
     const [userEmail, setUserEmail] = useState(null);
     const [userId, setUserId] = useState(null);
+    const [favorites, setFavorites] = useState([]);
     setInterval(() => {
 		if (user && !userEmail) {
 			setUserEmail(user.email)
 		}
-	}, 1000)
-    const getUserId = () => {
-        axios.post("/api/getuser", { userEmail: userEmail }).then(results => {
-			setUserId(results.data[0].id);
-			console.log(userId)
-        });
-    };
-    if (userEmail) {
-		getUserId();
-	}
+    }, 1000)
+
+    const getUserFavorites = () => {
+        debugger
+        axios.post('/api/user_favorites', { userEmail: userEmail })
+        .then( results => {
+            debugger
+            setFavorites(results.data)
+        })
+        .catch( err => {
+            debugger
+            console.log(err)
+        })
+    }
+    // useEffect( () => {
+    //     debugger
+    //     getUserFavorites();
+    // }, [])
 
     return (
         <div>

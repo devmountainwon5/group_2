@@ -38,12 +38,13 @@ export default function Card(props) {
     getComments();
 
     const addComment = async () => {
-        await axios.post('/api/add_comment', {userEmail: props.userEmail, place_id: props.place_id, date: commentDate, comment: addCommentInput})
+        await axios.post('/api/add_comment', {userEmail: props.userEmail, place_id: props.place_id, created_date: commentDate, comment: addCommentInput})
     }
     let showCommentsBox = showComments
-    ? comments.map( e => {
+    ? <div><div onClick={() => setShowComments(false)}>X</div>
+    {comments.map( e => {
         return <SingleComment author={e.first_name} date={e.created_date} comment={e.comment} pic={e.profilepic} />
-    })
+    })}</div>
     : <div></div>;
     
     let addCommentBox = showCommentBox
@@ -69,7 +70,7 @@ export default function Card(props) {
                 />
                 <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
-                    Restaurant
+                    {props.restaurantName}
                 </Typography>
                 <Typography variant="body2" color="textSecondary" component="p">
                     Description of restaurant? Or miles from users location. 
@@ -86,7 +87,7 @@ export default function Card(props) {
                         <AddCommentOutlinedIcon onClick={() => setShowCommentBox(true)}/>
                     </IconButton>
                 </div>
-                <div onClick={() => setShowCommentBox(true)}>
+                <div onClick={() => setShowComments(true)}>
                     Comments ({comments.length})
                 </div>
             </CardActions>

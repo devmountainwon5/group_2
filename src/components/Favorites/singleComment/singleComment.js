@@ -5,7 +5,7 @@ const SingleComment = props => {
         <div>
             <div>
                 <div>
-                    {props.pic}
+                    <img alt='' src={props.pic} />
                     {props.author}
                 </div>
                 <div>

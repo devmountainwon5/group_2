@@ -72,6 +72,11 @@ app.get("/*", (req, res) => {
 	});
 });
 
+app.use( (req, res, next) => {
+	console.log(req);
+	next();
+})
+
 app.post('/api/favorites', addDeleteController.addFavorite);
 app.delete('/api/favorites_delete/:favorite_id', addDeleteController.deleteFavorite);
 app.post('/api/userfavorites', addDeleteController.getFavorites);
