@@ -1,19 +1,20 @@
 import React from 'react';
+import './singleComment.css';
 
 const SingleComment = props => {
     return (
-        <div>
-            <div>
+        <div className='singleCommentParent'>
+            <div className='picAndName'>
                 <div>
-                    <img alt='' src={props.pic} />
-                    {props.author}
+                    <img className='personPic' alt='' src={props.pic} />
+                    <p className='personName'>{props.author}</p>
                 </div>
-                <div>
-                    {props.date}
+                <div className='dateDiv'>
+                    <p className='datePrint'>{props.date}</p>
                 </div>
             </div>
-            <div>
-                {props.comment}
+            <div className='commentPrintDiv'>
+                <p className='commentPrint'>{props.comment}</p>
             </div>
         </div>
     )

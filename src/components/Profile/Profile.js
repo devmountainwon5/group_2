@@ -15,23 +15,6 @@ const Profile = () => {
 		}
     }, 1000)
 
-    const getUserFavorites = () => {
-        debugger
-        axios.post('/api/user_favorites', { userEmail: userEmail })
-        .then( results => {
-            debugger
-            setFavorites(results.data)
-        })
-        .catch( err => {
-            debugger
-            console.log(err)
-        })
-    }
-    // useEffect( () => {
-    //     debugger
-    //     getUserFavorites();
-    // }, [])
-
     return (
         <div>
             <div className='profile'>

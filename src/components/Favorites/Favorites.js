@@ -12,6 +12,7 @@ import AddCommentOutlinedIcon from '@material-ui/icons/AddCommentOutlined'
 import './Favorites.css';
 import axios from 'axios';
 import SingleComment from './singleComment/singleComment';
+import CloseIcon from '@material-ui/icons/Close';
 
 
 export default function Card(props) {
@@ -41,22 +42,23 @@ export default function Card(props) {
         await axios.post('/api/add_comment', {userEmail: props.userEmail, place_id: props.place_id, created_date: commentDate, comment: addCommentInput})
     }
     let showCommentsBox = showComments
-    ? <div><div onClick={() => setShowComments(false)}>X</div>
+    ? <div className='showCommentBoxParent'><div onClick={() => setShowComments(false)}><CloseIcon style={{ cursor: 'pointer', marginLeft: '90%' }}/></div>
     {comments.map( e => {
         return <SingleComment author={e.first_name} date={e.created_date} comment={e.comment} pic={e.profilepic} />
     })}</div>
     : <div></div>;
     
     let addCommentBox = showCommentBox
-    ? <div>
-        <h1>How was your visit to {props.restaurantName}</h1>
-        <textarea rows='8' onChange={ e => {setAddCommentInput(e.target.value)}}/>
-        <div>
-            <button onClick={() => setShowCommentBox(false)}>Cancel</button>
-            <button onClick={() => {setShowCommentBox(false); addComment(); getComments();}}>Add Comment</button>
+    ? <div className='addCommentBoxParent'>
+        <h1 className='addCommentHowWasVisit'>How was your {props.restaurantName} experience?</h1>
+        <textarea className='addCommentTextArea' onChange={ e => {setAddCommentInput(e.target.value)}}/>
+        <div className='addCommentButtonDiv'>
+            <div className='addCommentCancelButton addCommentButton' onClick={() => setShowCommentBox(false)} >Cancel</div>
+            <div className='addCommentAddButton addCommentButton' onClick={() => {setShowCommentBox(false); addComment(); getComments();}}>Add Comment</div>
         </div>
     </div>
     : <div></div>;
+
 
     return (
         <div className={"faveList"}>

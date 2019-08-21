@@ -1,0 +1,17 @@
+.singleCommentParent {
+    margin: 25px;
+    width: 90%;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px;
+    padding: 25px;
+}
+
+.personPic {
+    height: 30px;
+    border-radius: 50px;
+}
+
+.commentPrint {
+    font-size: 20px;
+}
