@@ -47,10 +47,18 @@ export default function Card(props) {
         }
     }
     let showCommentsBox = showComments
-    ? <div className='showCommentBoxParent'><div onClick={() => setShowComments(false)}><CloseIcon style={{ cursor: 'pointer', marginLeft: '90%' }}/></div>
-    {comments.map( e => {
-        return <SingleComment commentUser={e.email} loggedInUser={props.userEmail} commentId={e.comment_id} author={e.first_name} date={e.created_date} comment={e.comment} pic={e.profilepic} />
-    })}</div>
+    ? <div className='showCommentBoxParent'>
+        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div>
+                <h2>Comments for {props.restaurantName}</h2>
+            </div>
+            <div onClick={() => setShowComments(false)}>
+                <CloseIcon style={{ cursor: 'pointer' }}/>
+            </div>
+        </div>
+        {comments.reverse().map( e => {
+            return <SingleComment commentUser={e.email} loggedInUser={props.userEmail} commentId={e.comment_id} author={e.first_name} date={e.created_date} comment={e.comment} pic={e.profilepic} />
+        })}</div>
     : <div></div>;
     
     let addCommentBox = showCommentBox
@@ -91,10 +99,10 @@ export default function Card(props) {
                         <DeleteOutlineOutlinedIcon />
                     </IconButton>
                     <IconButton size="small" color="primary"style={{marginTop: '3px'}}>
-                        <AddCommentOutlinedIcon onClick={() => setShowCommentBox(true)}/>
+                        <AddCommentOutlinedIcon onClick={() => {setShowCommentBox(true); setShowComments(false);}}/>
                     </IconButton>
                 </div>
-                <div onClick={() => setShowComments(true)}>
+                <div onClick={() => {setShowComments(true); setShowCommentBox(false);}}>
                     Comments ({comments.length})
                 </div>
             </CardActions>

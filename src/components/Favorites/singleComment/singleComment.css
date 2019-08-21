@@ -8,8 +8,9 @@
 }
 
 .personPic {
-    height: 30px;
+    height: 40px;
     border-radius: 50px;
+    margin-top: 2px;
 }
 
 .commentPrint {
@@ -23,4 +24,12 @@
 .picAndNameAndCanDelete {
     display: flex;
     justify-content: space-between;
+}
+
+.personName {
+    margin-top: -20px;
+}
+
+.dateAndNameDiv {
+    margin-left: 10px;
 }
