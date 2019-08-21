@@ -15,3 +15,12 @@
 .commentPrint {
     font-size: 20px;
 }
+
+.picAndName {
+    display: flex;
+}
+
+.picAndNameAndCanDelete {
+    display: flex;
+    justify-content: space-between;
+}

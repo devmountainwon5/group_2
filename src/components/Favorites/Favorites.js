@@ -39,12 +39,17 @@ export default function Card(props) {
     getComments();
 
     const addComment = async () => {
-        await axios.post('/api/add_comment', {userEmail: props.userEmail, place_id: props.place_id, created_date: commentDate, comment: addCommentInput})
+        if (addCommentInput.length === 0) {
+            window.alert('Please add a comment')
+        } else {
+            setShowCommentBox(false);
+            await axios.post('/api/add_comment', {userEmail: props.userEmail, place_id: props.place_id, created_date: commentDate, comment: addCommentInput})
+        }
     }
     let showCommentsBox = showComments
     ? <div className='showCommentBoxParent'><div onClick={() => setShowComments(false)}><CloseIcon style={{ cursor: 'pointer', marginLeft: '90%' }}/></div>
     {comments.map( e => {
-        return <SingleComment author={e.first_name} date={e.created_date} comment={e.comment} pic={e.profilepic} />
+        return <SingleComment commentUser={e.email} loggedInUser={props.userEmail} commentId={e.comment_id} author={e.first_name} date={e.created_date} comment={e.comment} pic={e.profilepic} />
     })}</div>
     : <div></div>;
     
@@ -54,7 +59,7 @@ export default function Card(props) {
         <textarea className='addCommentTextArea' onChange={ e => {setAddCommentInput(e.target.value)}}/>
         <div className='addCommentButtonDiv'>
             <div className='addCommentCancelButton addCommentButton' onClick={() => setShowCommentBox(false)} >Cancel</div>
-            <div className='addCommentAddButton addCommentButton' onClick={() => {setShowCommentBox(false); addComment(); getComments();}}>Add Comment</div>
+            <div className='addCommentAddButton addCommentButton' onClick={() => {addComment(); getComments();}}>Add Comment</div>
         </div>
     </div>
     : <div></div>;

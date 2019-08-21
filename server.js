@@ -83,7 +83,7 @@ app.post('/api/userfavorites', addDeleteController.getFavorites);
 
 app.post('/api/favorite_comments', comments.getComments);
 app.post('/api/add_comment', comments.addComment);
-app.delete('/api/delete_comment', comments.deleteComment);
+app.post('/api/delete_comment', comments.deleteComment);
 app.post('/api/getuser', getUser.getUser);
 
 const port = PORT || 4000;
