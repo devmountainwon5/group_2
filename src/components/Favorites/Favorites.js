@@ -149,7 +149,7 @@ export default function Card(props) {
                         <AddCommentOutlinedIcon onClick={() => {setShowAddCommentBox(true); setShowComments(false); }}/>
                     </IconButton>
                 </div>
-                <div onClick={() => {setShowComments(true); setShowAddCommentBox(false); }}>
+                <div className='showCommentLength' onClick={() => {setShowComments(true); setShowAddCommentBox(false); }}>
                     Comments ({comments.length})
                 </div>
             </CardActions>

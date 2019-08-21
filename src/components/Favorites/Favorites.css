@@ -109,3 +109,11 @@
     padding-right: 9px;
     border-radius: 6px;
 }
+
+.showCommentLength {
+    cursor: pointer;
+}
+
+.showCommentLength:hover {
+    color: #3f51b5;
+}
