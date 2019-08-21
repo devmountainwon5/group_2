@@ -85,6 +85,7 @@ app.post('/api/favorite_comments', comments.getComments);
 app.post('/api/add_comment', comments.addComment);
 app.post('/api/delete_comment', comments.deleteComment);
 app.post('/api/getuser', getUser.getUser);
+app.post('/api/edit_comment', comments.editComment);
 
 const port = PORT || 4000;
 

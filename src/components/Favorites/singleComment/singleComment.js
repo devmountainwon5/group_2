@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './singleComment.css';
 import axios from 'axios';
 import CloseIcon from '@material-ui/icons/Close';
+import EditIcon from '@material-ui/icons/Edit';
 
 const SingleComment = props => {
+
+
+
+
     const deleteComment = () => {
         axios.post('/api/delete_comment', { comment_id: props.commentId, userEmail: props.loggedInUser })
         .then( results => {
@@ -14,11 +19,23 @@ const SingleComment = props => {
         })
     }
 
+    let canEdit = props.loggedInUser === props.commentUser
+    ? <div className='editIcon'>
+        <EditIcon onClick={ () => {props.displayEditBox(); props.setEditId(props.commentId)} }/>
+    </div>
+    : <div></div>;
+
     let canDelete = props.loggedInUser === props.commentUser
-    ? <div>
+    ? <div className='closeIcon'>
         <CloseIcon onClick={ () => deleteComment() }/>
     </div>
     : <div></div>;
+
+
+
+
+
+
     return (
         <div className='singleCommentParent'>
             <div className='picAndNameAndCanDelete'>
@@ -31,7 +48,8 @@ const SingleComment = props => {
                         <p className='personName'>{props.author}</p>
                     </div>
                 </div>
-                <div className='canDeleteDiv'>
+                <div className='canEditAndDeleteDiv'>
+                    {canEdit}
                     {canDelete}
                 </div>
             </div>

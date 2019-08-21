@@ -33,3 +33,15 @@
 .dateAndNameDiv {
     margin-left: 10px;
 }
+
+.canEditAndDeleteDiv {
+    display: flex;
+}
+
+.editIcon {
+    cursor: pointer;
+}
+
+.closeIcon {
+    cursor: pointer;
+}

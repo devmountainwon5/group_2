@@ -71,5 +71,18 @@ module.exports = {
         .catch( err => {
             res.status(500).send(err)
         })
+    },
+    editComment: (req, res, next) => {
+        const dbInstance = req.app.get('db');
+
+        const { comment_id, editedComment } = req.body;
+
+        dbInstance.edit_comment([comment_id, editedComment])
+        .then( results => {
+            res.status(200).send("Comment has been edited")
+        })
+        .catch( err => {
+            res.status(500).send(err)
+        });
     }  
 }

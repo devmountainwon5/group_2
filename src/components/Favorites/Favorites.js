@@ -18,8 +18,11 @@ import CloseIcon from '@material-ui/icons/Close';
 export default function Card(props) {
     const [showComments, setShowComments] = useState(false)
     const [addCommentInput, setAddCommentInput] = useState('');
-    const [showCommentBox, setShowCommentBox] = useState(false);
-    const [comments, setComments] = useState([])
+    const [showAddCommentBox, setShowAddCommentBox] = useState(false);
+    const [commentIdToEdit, setCommentIdToEdit] = useState(null);
+    const [comments, setComments] = useState([]);
+    const [editCommentBoxShow, setEditCommentBoxShow] = useState(false);
+    const [editCommentInput, setEditCommentInput] = useState('');
 
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
@@ -27,6 +30,7 @@ export default function Card(props) {
     let yyyy = today.getFullYear();
 
     let commentDate = mm + '/' + dd + '/' + yyyy;
+    
     const getComments = () => {
         axios.post('/api/favorite_comments', { place_id: props.place_id })
         .then( results => {
@@ -42,10 +46,32 @@ export default function Card(props) {
         if (addCommentInput.length === 0) {
             window.alert('Please add a comment')
         } else {
-            setShowCommentBox(false);
+            setShowAddCommentBox(false);
             await axios.post('/api/add_comment', {userEmail: props.userEmail, place_id: props.place_id, created_date: commentDate, comment: addCommentInput})
         }
     }
+
+    const setCommentId = (id) => {
+        setCommentIdToEdit(id)
+    };
+
+    const showEditComments = () => {
+        setEditCommentBoxShow(true);
+        setShowComments(false);
+        setShowAddCommentBox(false);
+    }
+
+    const editComment = async () => {
+        if (editCommentInput.length === 0) {
+            window.alert('Please edit your comment')
+        } else {
+            setEditCommentBoxShow(false);
+        await axios.post('/api/edit_comment', { comment_id: commentIdToEdit, editedComment: editCommentInput })
+        }
+    }
+
+
+
     let showCommentsBox = showComments
     ? <div className='showCommentBoxParent'>
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -56,21 +82,42 @@ export default function Card(props) {
                 <CloseIcon style={{ cursor: 'pointer' }}/>
             </div>
         </div>
-        {comments.reverse().map( e => {
-            return <SingleComment commentUser={e.email} loggedInUser={props.userEmail} commentId={e.comment_id} author={e.first_name} date={e.created_date} comment={e.comment} pic={e.profilepic} />
+        {comments.map( e => {
+            return <SingleComment displayEditBox={ showEditComments } setEditId={ setCommentId } getComments={getComments} commentUser={e.email} loggedInUser={props.userEmail} commentId={e.comment_id} author={e.first_name} date={e.created_date} comment={e.comment} pic={e.profilepic} />
         })}</div>
     : <div></div>;
     
-    let addCommentBox = showCommentBox
+
+
+
+    let addCommentBox = showAddCommentBox
     ? <div className='addCommentBoxParent'>
         <h1 className='addCommentHowWasVisit'>How was your {props.restaurantName} experience?</h1>
         <textarea className='addCommentTextArea' onChange={ e => {setAddCommentInput(e.target.value)}}/>
         <div className='addCommentButtonDiv'>
-            <div className='addCommentCancelButton addCommentButton' onClick={() => setShowCommentBox(false)} >Cancel</div>
+            <div className='addCommentCancelButton addCommentButton' onClick={() => setShowAddCommentBox(false)} >Cancel</div>
             <div className='addCommentAddButton addCommentButton' onClick={() => {addComment(); getComments();}}>Add Comment</div>
         </div>
     </div>
     : <div></div>;
+
+    
+    let editCommentBox = editCommentBoxShow
+    ? <div className='editCommentBoxParent'>
+        <h1 className='editCommentHowWasVisit'>Edit your {props.restaurantName} experience:</h1>
+        <textarea className='editCommentTextArea' onChange={ e => {setEditCommentInput(e.target.value)}}/>
+        <div className='editCommentButtonDiv'>
+            <div className='editCommentCancelButton editCommentButton' onClick={() => {setEditCommentBoxShow(false)}} >Cancel</div>
+            <div className='editCommentEditButton editCommentButton' onClick={() => {editComment(); getComments(); setEditCommentBoxShow(false); setShowComments(true); setShowAddCommentBox(false);}}>Save Changes</div>
+        </div>
+    </div>
+    : <div></div>;
+
+
+    
+
+
+
 
 
     return (
@@ -99,10 +146,10 @@ export default function Card(props) {
                         <DeleteOutlineOutlinedIcon />
                     </IconButton>
                     <IconButton size="small" color="primary"style={{marginTop: '3px'}}>
-                        <AddCommentOutlinedIcon onClick={() => {setShowCommentBox(true); setShowComments(false);}}/>
+                        <AddCommentOutlinedIcon onClick={() => {setShowAddCommentBox(true); setShowComments(false); }}/>
                     </IconButton>
                 </div>
-                <div onClick={() => {setShowComments(true); setShowCommentBox(false);}}>
+                <div onClick={() => {setShowComments(true); setShowAddCommentBox(false); }}>
                     Comments ({comments.length})
                 </div>
             </CardActions>
@@ -112,6 +159,7 @@ export default function Card(props) {
             </Cards>
             {addCommentBox}
             {showCommentsBox}
+            {editCommentBox}
         </div>
     );
 
