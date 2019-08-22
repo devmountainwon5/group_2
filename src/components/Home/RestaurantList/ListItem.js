@@ -7,31 +7,6 @@ import axios from "axios";
 // import { Link } from "react-router-dom";
 // import SingleView from "./src/components/Home/SingleView/SingleView";
 
-<<<<<<< HEAD
-export default function List(props) {
-	return (
-		<div className="row">
-			<div className="card-deck">
-				<div className="card">
-					{/* <SingleView /> */}
-					{/* <Link to={`/posts/${props.id}`}> */}
-					<img src={props.picture} className="card-img-top" />
-					<div className="card-body">
-						<h4>{props.name}</h4>
-						<h4>{props.rating}/5 Stars</h4>
-						<h5>{props.address}</h5>
-						<div>
-							<button className="btn btn-primary">Add</button>
-							<a
-								target="blank"
-								href={
-									"https://www.google.com/maps/search/?api=1&query=Google&query_place_id=" +
-									props.place_id
-								}>
-								<button className="btn google review">More Info</button>
-							</a>
-						</div>
-=======
 class List extends Component {
 	//   constructor(props) {
 	//   super(props);
@@ -79,9 +54,9 @@ class List extends Component {
 						{/* <Link to={`/posts/${props.id}`}> */}
 						{/* <img src={this.props.picture} className='card-img-top' /> */}
 						<div className='card-body'>
-							<h4>{this.props.name}</h4>
-							<h4>{this.props.rating}</h4>
-							<h5>{this.props.address}</h5>
+							<h4 className='listItemFont' >{this.props.name}</h4>
+							<h4 className='listItemFont' >{this.props.rating}</h4>
+							<h5 className='listItemFont' >{this.props.address}</h5>
 							<button className='btn btn-primary' onClick={this.addFavs}>
 								ADD
 							</button>
@@ -95,7 +70,6 @@ class List extends Component {
 							</a>
 						</div>
 						{/* </Link> */}
->>>>>>> 158421022be925e3cbaa216aab76cd3a13c1bc65
 					</div>
 				</div>
 			</div>
