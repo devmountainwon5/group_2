@@ -17,13 +17,13 @@ class Card extends Component{
     constructor(props){
         super(props)
         this.state = {
-            favorites: {
+            favorites: [{
                 picture: this.props.picture,
                 name: this.props.name,
                 address: this.props.address,
                 user_id: this.props.user_id,
                 link: this.props.link
-            }
+            }]
         };
 
         this.deleteFavorite = this.deleteFavorite.bind(this);
@@ -47,7 +47,7 @@ class Card extends Component{
         axios
             .delete(`/api/favorites_delete/${favorite_id}`)
             .then(res => {
-                if (res.data.success) {
+                if (res.data) {
                     this.props.dispatch({
                         type: "favorites",
                         payload: res.data
@@ -85,7 +85,8 @@ class Card extends Component{
                     <FavoriteIcon />
                 </IconButton>  */}
                 <IconButton size="small">
-                    <DeleteIcon onClick={this.deleteFavorite}/>
+                    <DeleteIcon onClick={this.props.deleteFavorite}/>
+                    {/* () => this.props.deleteFavorite(favorite_id) */}
                 </IconButton>
             </CardActions>
 
