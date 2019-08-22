@@ -22,6 +22,8 @@ export default function Card(props) {
 						</Typography>
 						<Typography variant='body2' color='textSecondary' component='p'>
 							{props.rating}
+						</Typography>
+						<Typography variant='body2' color='textSecondary' component='p'>
 							{props.res_address}
 						</Typography>
 					</CardContent>
