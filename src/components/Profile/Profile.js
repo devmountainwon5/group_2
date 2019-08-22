@@ -23,6 +23,10 @@ const Profile = () => {
 				console.log(err);
 			});
 	};
+<<<<<<< HEAD
+=======
+
+>>>>>>> 158421022be925e3cbaa216aab76cd3a13c1bc65
 	if (userEmail) {
 		getUserFavorites();
 	}
@@ -39,8 +43,13 @@ const Profile = () => {
 	});
 	return (
 		<div>
+<<<<<<< HEAD
 			<div className="profile">
 				<img src={user.picture} alt="Profile" className="pic" />​
+=======
+			<div className='profile'>
+				<img src={user.picture} alt='Profile' className='pic' />​
+>>>>>>> 158421022be925e3cbaa216aab76cd3a13c1bc65
 				<h2>{user.name}</h2>
 				<p>{user.email}</p>
 			</div>
