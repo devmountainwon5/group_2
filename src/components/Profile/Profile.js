@@ -23,7 +23,6 @@ const Profile = () => {
 				console.log(err);
 			});
 	};
-
 	if (userEmail) {
 		getUserFavorites();
 	}
