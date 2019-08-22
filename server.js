@@ -9,6 +9,7 @@ const jwksRsa = require('jwks-rsa');
 const addDeleteController = require('./controllers/add_delete_favorites');
 const user = require("./src/controllers/user");
 const comments = require('./controllers/comments');
+const getUser = require('./controllers/get_user');
 
 const app = express();
 
@@ -71,13 +72,20 @@ app.get("/*", (req, res) => {
 	});
 });
 
+app.use( (req, res, next) => {
+	console.log(req);
+	next();
+})
+
 app.post('/api/favorites', addDeleteController.addFavorite);
 app.delete('/api/favorites_delete/:favorite_id', addDeleteController.deleteFavorite);
 app.post('/api/userfavorites', addDeleteController.getFavorites);
 
 app.post('/api/favorite_comments', comments.getComments);
 app.post('/api/add_comment', comments.addComment);
-app.delete('/api/delete_comment', comments.deleteComment);
+app.post('/api/delete_comment', comments.deleteComment);
+app.post('/api/getuser', getUser.getUser);
+app.post('/api/edit_comment', comments.editComment);
 
 const port = PORT || 4000;
 
