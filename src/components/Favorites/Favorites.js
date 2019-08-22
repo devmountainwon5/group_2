@@ -95,7 +95,17 @@ export default function Card(props) {
 				editedComment: editCommentInput
 			});
 		}
-	};
+    };
+    
+    const deleteFavorite = () => {
+        axios.delete(`/api/favorites_delete/${ props.favorite_id }`)
+        .then( results => {
+            console.log(results)
+        })
+        .catch( err => {
+            console.log(err)
+        });
+    }
 
 	let showCommentsBox = showComments ? (
 		<div className='showCommentBoxParent'>
@@ -216,7 +226,11 @@ export default function Card(props) {
 				<CardActions>
 					<div>
 						<IconButton size='small' color='primary'>
-							<DeleteOutlineOutlinedIcon />
+							<DeleteOutlineOutlinedIcon 
+                                onClick={ () => {
+                                    deleteFavorite();
+                                }} 
+                            />
 						</IconButton>
 						<IconButton
 							size='small'
