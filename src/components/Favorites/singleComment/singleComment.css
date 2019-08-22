@@ -1,0 +1,47 @@
+.singleCommentParent {
+    margin: 25px;
+    width: 90%;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px;
+    padding: 25px;
+}
+
+.personPic {
+    height: 40px;
+    border-radius: 50px;
+    margin-top: 2px;
+}
+
+.commentPrint {
+    font-size: 20px;
+}
+
+.picAndName {
+    display: flex;
+}
+
+.picAndNameAndCanDelete {
+    display: flex;
+    justify-content: space-between;
+}
+
+.personName {
+    margin-top: -20px;
+}
+
+.dateAndNameDiv {
+    margin-left: 10px;
+}
+
+.canEditAndDeleteDiv {
+    display: flex;
+}
+
+.editIcon {
+    cursor: pointer;
+}
+
+.closeIcon {
+    cursor: pointer;
+}
