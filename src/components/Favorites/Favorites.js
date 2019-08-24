@@ -199,13 +199,23 @@ export default function Card(props) {
 				editedComment: editCommentInput
 			});
 		}
-	};
+    };
+    
+    const deleteFavorite = () => {
+        axios.delete(`/api/favorites_delete/${ props.favorite_id }`)
+        .then( results => {
+            console.log(results)
+        })
+        .catch( err => {
+            console.log(err)
+        });
+    }
 
 	let showCommentsBox = showComments ? (
 		<div className='showCommentBoxParent'>
 			<div style={{ display: "flex", justifyContent: "space-between" }}>
 				<div>
-					<h2>Comments for {props.restaurantName}</h2>
+					<h2>Comments for {props.res_name}</h2>
 				</div>
 				<div onClick={() => setShowComments(false)}>
 					<CloseIcon style={{ cursor: "pointer" }} />
@@ -309,7 +319,7 @@ export default function Card(props) {
 							{props.res_name}
 						</Typography>
 						<Typography variant='body2' color='textSecondary' component='p'>
-							{props.rating}
+							<p>{props.rating}/5 stars</p>
 						</Typography>
 						<Typography variant='body2' color='textSecondary' component='p'>
 							{props.res_address}
@@ -320,7 +330,11 @@ export default function Card(props) {
 				<CardActions>
 					<div>
 						<IconButton size='small' color='primary'>
-							<DeleteOutlineOutlinedIcon />
+							<DeleteOutlineOutlinedIcon 
+                                onClick={ () => {
+                                    deleteFavorite();
+                                }} 
+                            />
 						</IconButton>
 						<IconButton
 							size='small'

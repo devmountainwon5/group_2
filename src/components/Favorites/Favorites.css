@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .faveList {
     /* display: flex; */
     flex-wrap: wrap;
@@ -10,116 +11,124 @@
     justify-content: flex-start;
     float: left;
     margin: 10px 20px;
+=======
+.faveList .card {
+	width: 330px;
+	margin-bottom: 20px;
+	justify-content: flex-start;
+	float: left;
+	margin: 10px 65px;
+>>>>>>> ca5bd41907351dd23aee15b7b5905e81b2c2362f
 }
 
 .media {
-    height: 140px;
+	height: 140px;
 }
 
 .addCommentBoxParent {
-    position: fixed;
-    margin-left: 10%;
-    width: 80%;
-    height: 70vh;
-    border-radius: 14px;
-    box-shadow: 0px 0px 7px;
-    background-color: white;
-    z-index: 10;
-    top: 15vh;
-    padding: 25px;
+	position: fixed;
+	margin-left: 10%;
+	width: 80%;
+	height: 70vh;
+	border-radius: 14px;
+	box-shadow: 0px 0px 7px;
+	background-color: white;
+	z-index: 10;
+	top: 15vh;
+	padding: 25px;
 }
 
 .addCommentTextArea {
-    width: 100%;
-    margin-top: 50px;
-    height: 30vh;
-    position: relative;
+	width: 100%;
+	margin-top: 50px;
+	height: 30vh;
+	position: relative;
 }
 
 .addCommentHowWasVisit {
-    margin-top: 25px;
+	margin-top: 25px;
 }
 
 .addCommentButtonDiv {
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    width: 93%;
-    bottom: 5%;
+	display: flex;
+	justify-content: space-between;
+	position: absolute;
+	width: 93%;
+	bottom: 5%;
 }
 
 .addCommentButton {
-    cursor: pointer;
-    background-color: #e59500;
-    height: 35px;
-    color: #002642;
-    padding: 5px;
-    padding-left: 9px;
-    padding-right: 9px;
-    border-radius: 6px;
+	cursor: pointer;
+	background-color: #e59500;
+	height: 35px;
+	color: #002642;
+	padding: 5px;
+	padding-left: 9px;
+	padding-right: 9px;
+	border-radius: 6px;
 }
 
 .showCommentBoxParent {
-    position: fixed;
-    margin-left: 10%;
-    width: 80%;
-    height: 70vh;
-    border-radius: 14px;
-    box-shadow: 0px 0px 7px;
-    background-color: white;
-    z-index: 10;
-    top: 15vh;
-    padding: 25px;
-    overflow: auto;
+	position: fixed;
+	margin-left: 10%;
+	width: 80%;
+	height: 70vh;
+	border-radius: 14px;
+	box-shadow: 0px 0px 7px;
+	background-color: white;
+	z-index: 10;
+	top: 15vh;
+	padding: 25px;
+	overflow: auto;
 }
 
 .editCommentBoxParent {
-    position: fixed;
-    margin-left: 10%;
-    width: 80%;
-    height: 70vh;
-    border-radius: 14px;
-    box-shadow: 0px 0px 7px;
-    background-color: white;
-    z-index: 10;
-    top: 15vh;
-    padding: 25px;
+	position: fixed;
+	margin-left: 10%;
+	width: 80%;
+	height: 70vh;
+	border-radius: 14px;
+	box-shadow: 0px 0px 7px;
+	background-color: white;
+	z-index: 10;
+	top: 15vh;
+	padding: 25px;
 }
 
 .editCommentTextArea {
-    width: 100%;
-    margin-top: 50px;
-    height: 30vh;
-    position: relative;
+	width: 100%;
+	margin-top: 50px;
+	height: 30vh;
+	position: relative;
 }
 
 .editCommentHowWasVisit {
-    margin-top: 25px;
+	margin-top: 25px;
 }
 
 .editCommentButtonDiv {
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    width: 93%;
-    bottom: 5%;
+	display: flex;
+	justify-content: space-between;
+	position: absolute;
+	width: 93%;
+	bottom: 5%;
 }
 
 .editCommentButton {
-    cursor: pointer;
-    background-color: #e59500;
-    height: 35px;
-    color: #002642;
-    padding: 5px;
-    padding-left: 9px;
-    padding-right: 9px;
-    border-radius: 6px;
+	cursor: pointer;
+	background-color: #e59500;
+	height: 35px;
+	color: #002642;
+	padding: 5px;
+	padding-left: 9px;
+	padding-right: 9px;
+	border-radius: 6px;
 }
 
 .showCommentLength {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .showCommentLength:hover {
-    color: #3f51b5;
+	color: #3f51b5;
 }

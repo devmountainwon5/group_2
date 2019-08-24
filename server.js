@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 require("dotenv").config();
 const express = require('express');
 const massive = require('massive');
@@ -8,9 +9,20 @@ const path = require('path');
 const jwt = require('express-jwt');
 const jwksRsa = require('jwks-rsa');
 const addDeleteController = require('./controllers/add_delete_favorites');
+=======
+const express = require("express");
+const massive = require("massive");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const session = require("express-session");
+const path = require("path");
+const jwt = require("express-jwt");
+const jwksRsa = require("jwks-rsa");
+const addDeleteController = require("./controllers/add_delete_favorites");
+>>>>>>> ca5bd41907351dd23aee15b7b5905e81b2c2362f
 const user = require("./src/controllers/user");
-const comments = require('./controllers/comments');
-const getUser = require('./controllers/get_user');
+const comments = require("./controllers/comments");
+const getUser = require("./controllers/get_user");
 
 const app = express();
 
@@ -67,26 +79,30 @@ app.use(express.static(path.join(__dirname, "/build")));
 app.post("/api/user", user.user);
 
 app.post("/api/userGet", user.userGet);
+
+app.use((req, res, next) => {
+	console.log(req);
+	next();
+});
+
+app.post("/api/favorites", addDeleteController.addFavorite);
+app.delete(
+	"/api/favorites_delete/:favorite_id",
+	addDeleteController.deleteFavorite
+);
+app.post("/api/userfavorites", addDeleteController.getFavorites);
+
+app.post("/api/favorite_comments", comments.getComments);
+app.post("/api/add_comment", comments.addComment);
+app.post("/api/delete_comment", comments.deleteComment);
+app.post("/api/getuser", getUser.getUser);
+app.post("/api/edit_comment", comments.editComment);
+
 app.get("/*", (req, res) => {
 	res.sendFile("index.html", {
 		root: path.join(__dirname, "build")
 	});
 });
-
-app.use( (req, res, next) => {
-	console.log(req);
-	next();
-})
-
-app.post('/api/favorites', addDeleteController.addFavorite);
-app.delete('/api/favorites_delete/:favorite_id', addDeleteController.deleteFavorite);
-app.post('/api/userfavorites', addDeleteController.getFavorites);
-
-app.post('/api/favorite_comments', comments.getComments);
-app.post('/api/add_comment', comments.addComment);
-app.post('/api/delete_comment', comments.deleteComment);
-app.post('/api/getuser', getUser.getUser);
-app.post('/api/edit_comment', comments.editComment);
 
 const port = PORT || 4000;
 

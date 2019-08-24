@@ -33,14 +33,17 @@ class List extends Component {
 		if (true) {
 			axios.post("/api/favorites", favs).then(results => {
 				console.log(results);
-				//checking successful registration
-				if (results.data.success) {
-					//dispatch obj to store
-					this.props.dispatch({
-						type: "favorites",
-						payload: results.data
-					});
-				}
+				if (results.data === 'Please Sign In') {
+					window.alert('Please sign in to add favorites')
+				} else {
+					if (results.data.success) {
+						//dispatch obj to store
+						this.props.dispatch({
+							type: "favorites",
+							payload: results.data
+						});
+					}
+				}	
 			});
 		}
 	};
@@ -54,9 +57,9 @@ class List extends Component {
 						{/* <Link to={`/posts/${props.id}`}> */}
 						{/* <img src={this.props.picture} className='card-img-top' /> */}
 						<div className='card-body'>
-							<h4>{this.props.name}</h4>
-							<h4>{this.props.rating}</h4>
-							<h5>{this.props.address}</h5>
+							<h4 className='listItemFont' >{this.props.name}</h4>
+							<h4 className='listItemFont' >{this.props.rating}</h4>
+							<h5 className='listItemFont' >{this.props.address}</h5>
 							<button className='btn btn-primary' onClick={this.addFavs}>
 								ADD
 							</button>
