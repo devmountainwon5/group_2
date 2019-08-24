@@ -4,6 +4,7 @@ module.exports = {
 
 		const { res_name, res_address, place_id, res_pic, rating } = req.body;
 		const { userEmail } = req.session;
+		console.log(req.session)
 		if (userEmail) {
 			dbInstance
 				.get_user([userEmail])
