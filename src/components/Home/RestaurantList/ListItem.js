@@ -33,14 +33,17 @@ class List extends Component {
 		if (true) {
 			axios.post("/api/favorites", favs).then(results => {
 				console.log(results);
-				//checking successful registration
-				if (results.data.success) {
-					//dispatch obj to store
-					this.props.dispatch({
-						type: "favorites",
-						payload: results.data
-					});
-				}
+				if (results.data === 'Please Sign In') {
+					window.alert('Please sign in to add favorites')
+				} else {
+					if (results.data.success) {
+						//dispatch obj to store
+						this.props.dispatch({
+							type: "favorites",
+							payload: results.data
+						});
+					}
+				}	
 			});
 		}
 	};
