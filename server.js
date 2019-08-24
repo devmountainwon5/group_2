@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-require("dotenv").config();
-const express = require('express');
-const massive = require('massive');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const session = require('express-session');
-const path = require('path');
-const jwt = require('express-jwt');
-const jwksRsa = require('jwks-rsa');
-const addDeleteController = require('./controllers/add_delete_favorites');
-=======
 const express = require("express");
 const massive = require("massive");
 const cors = require("cors");
@@ -19,7 +7,6 @@ const path = require("path");
 const jwt = require("express-jwt");
 const jwksRsa = require("jwks-rsa");
 const addDeleteController = require("./controllers/add_delete_favorites");
->>>>>>> ca5bd41907351dd23aee15b7b5905e81b2c2362f
 const user = require("./src/controllers/user");
 const comments = require("./controllers/comments");
 const getUser = require("./controllers/get_user");

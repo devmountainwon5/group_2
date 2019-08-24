@@ -1,33 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-import { useAuth0 } from './../../react-auth0-wrapper';
-import Favorites from "../Favorites/Favorites";
-import "./Profile.css"
-
-const Profile = () => {
-  const { loading, user } = useAuth0();
-
-  if (loading || !user) {
-    return 'Loading...';
-  }
-
-  return (
-    <div>
-      <div className='profile'>
-      <img src={user.picture} alt='Profile' className='user-img'/>
-
-      <h2>{user.name}</h2>
-      <p>{user.email}</p>
-      </div>
-
-      <Favorites user={user.email}/>
-      
-      
-    </div>
-    
-
-  );
-=======
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "./../../react-auth0-wrapper";
 import Favorites from "../Favorites/Favorites";
@@ -53,6 +23,7 @@ const Profile = () => {
 				console.log(err);
 			});
 	};
+​
 	if (userEmail) {
 		getUserFavorites();
 	}
@@ -63,8 +34,7 @@ const Profile = () => {
 				res_name={e.res_name}
 				userEmail={userEmail}
 				res_address={e.res_address}
-                rating={e.rating}
-                favorite_id={e.favorite_id}
+				rating={e.rating}
 			/>
 		);
 	});
@@ -78,6 +48,11 @@ const Profile = () => {
 			​<div>{favoritesList}</div>
 		</div>
 	);
->>>>>>> 158421022be925e3cbaa216aab76cd3a13c1bc65
 };
 export default Profile;
+
+
+
+
+
+

@@ -1,65 +1,4 @@
 {
-<<<<<<< HEAD
-  "name": "quick-bite",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@auth0/auth0-spa-js": "^1.1.0",
-    "@material-ui/core": "^4.2.1",
-    "@material-ui/icons": "^4.2.1",
-    "@material/card": "^3.1.0",
-    "axios": "^0.19.0",
-    "body-parser": "^1.19.0",
-    "browser-router": "^0.2.0",
-    "cors": "^2.8.5",
-    "dotenv": "^8.0.0",
-    "express": "^4.17.1",
-    "express-jwt": "^5.3.1",
-    "express-session": "^1.16.2",
-    "google-maps-react": "^2.0.2",
-    "jwks-rsa": "^1.6.0",
-    "massive": "^5.11.2",
-    "material-ui": "^0.20.2",
-    "npm-run-all": "^4.1.5",
-    "path": "^0.12.7",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "react-google-maps": "^9.4.5",
-    "react-redux": "^7.1.0",
-    "react-router": "^5.0.1",
-    "react-router-dom": "^5.0.1",
-    "react-scripts": "3.0.1",
-    "recompose": "^0.30.0",
-    "redux": "^4.0.4",
-    "redux-thunk": "^2.3.0",
-    "sessions": "0.0.2-7",
-    "thunk": "0.0.1"
-  },
-  "scripts": {
-    "start": "PORT=4001 react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "dev": "npm-run-all --parallel start server",
-    "server": "node server.js"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "proxy": "http://localhost:4000"
-=======
 	"name": "quick-bite",
 	"version": "0.1.0",
 	"private": true,
@@ -119,5 +58,4 @@
 		]
 	},
 	"proxy": "http://localhost:4000"
->>>>>>> ca5bd41907351dd23aee15b7b5905e81b2c2362f
 }

@@ -1,107 +1,3 @@
-<<<<<<< HEAD
-import React, { Component } from 'react';
-import axios from "axios";
-import Cards from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-// import FavoriteIcon from '@material-ui/icons/Favorite';
-import DeleteIcon from '@material-ui/icons/Delete';
-import { connect } from 'react-redux';
-import './Favorites.css';
-
-
-class Card extends Component{
-    constructor(props){
-        super(props)
-        this.state = {
-            favorites: [{
-                picture: this.props.picture,
-                name: this.props.name,
-                address: this.props.address,
-                user_id: this.props.user_id,
-                link: this.props.link
-            }]
-        };
-
-        this.deleteFavorite = this.deleteFavorite.bind(this);
-    }
-
-    componentDidMount(){
-        axios.post(`/api/userfavorites`, {userEmail: this.props.user})
-        .then((data)=>{
-            if(data){
-                this.props.dispatch({
-                    type: "favorites",
-                    payload: data
-                });
-            } else{
-                alert('uh oh! Your favorites went missing')
-            }
-        })
-    }
-
-    deleteFavorite(favorite_id){
-        axios
-            .delete(`/api/favorites_delete/${favorite_id}`)
-            .then(res => {
-                if (res.data) {
-                    this.props.dispatch({
-                        type: "favorites",
-                        payload: res.data
-                    });
-                }
-            })
-            .catch(error => console.log(error));
-    };
-
-    render () {
-
-        const favoritesCard = this.state.favorites.map((fave, i)=>{
-            return (
-            <Cards className={"card"} >
-                
-            <CardActionArea >
-                <CardMedia 
-                className={"media"}
-                />
-                <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                    {fave.name}
-                </Typography>
-                <Typography gutterBottom variant="h5" component="h3">
-                    {fave.address}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    {fave.link}
-                </Typography>
-                </CardContent>
-            </CardActionArea>
-
-            <CardActions>
-                {/* <IconButton aria-label="add to favorites">
-                    <FavoriteIcon />
-                </IconButton>  */}
-                <IconButton size="small">
-                    <DeleteIcon onClick={this.props.deleteFavorite}/>
-                    {/* () => this.props.deleteFavorite(favorite_id) */}
-                </IconButton>
-            </CardActions>
-
-            </Cards>
-            )
-          })
-
-    return (
-        <div className={"faveList"}>
-            {favoritesCard}
-        </div>
-    );
-    }
-=======
 import React, { useState } from "react";
 import Cards from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -117,26 +13,7 @@ import "./Favorites.css";
 import axios from "axios";
 import SingleComment from "./singleComment/singleComment";
 import CloseIcon from "@material-ui/icons/Close";
-
-// export default function Card(props) {
-// 	return (
-// 		<div className={"faveList"}>
-// 			<Cards className={"card"}>
-// 				<CardActionArea>
-// 					<CardMedia className={"media"} image='' title='Restaurant' />
-// 					<CardContent>
-// 						<Typography gutterBottom variant='h5' component='h2'>
-// 							{props.res_name}
-// 						</Typography>
-// 						<Typography variant='body2' color='textSecondary' component='p'>
-// 							{props.rating}
-// 						</Typography>
-// 						<Typography variant='body2' color='textSecondary' component='p'>
-// 							{props.res_address}
-// 						</Typography>
-// 					</CardContent>
-// 				</CardActionArea>
-
+​
 export default function Card(props) {
 	const [showComments, setShowComments] = useState(false);
 	const [addCommentInput, setAddCommentInput] = useState("");
@@ -145,12 +22,12 @@ export default function Card(props) {
 	const [comments, setComments] = useState([]);
 	const [editCommentBoxShow, setEditCommentBoxShow] = useState(false);
 	const [editCommentInput, setEditCommentInput] = useState("");
-
+​   
 	let today = new Date();
 	let dd = String(today.getDate()).padStart(2, "0");
 	let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
 	let yyyy = today.getFullYear();
-
+​
 	let commentDate = mm + "/" + dd + "/" + yyyy;
 
 	const getComments = () => {
@@ -164,7 +41,7 @@ export default function Card(props) {
 			});
 	};
 	getComments();
-
+​
 	const addComment = async () => {
 		if (addCommentInput.length === 0) {
 			window.alert("Please add a comment");
@@ -178,17 +55,17 @@ export default function Card(props) {
 			});
 		}
 	};
-
+​
 	const setCommentId = id => {
 		setCommentIdToEdit(id);
 	};
-
+​
 	const showEditComments = () => {
 		setEditCommentBoxShow(true);
 		setShowComments(false);
 		setShowAddCommentBox(false);
-	};
-
+    };
+​
 	const editComment = async () => {
 		if (editCommentInput.length === 0) {
 			window.alert("Please edit your comment");
@@ -199,23 +76,13 @@ export default function Card(props) {
 				editedComment: editCommentInput
 			});
 		}
-    };
-    
-    const deleteFavorite = () => {
-        axios.delete(`/api/favorites_delete/${ props.favorite_id }`)
-        .then( results => {
-            console.log(results)
-        })
-        .catch( err => {
-            console.log(err)
-        });
-    }
-
+	};
+​
 	let showCommentsBox = showComments ? (
 		<div className='showCommentBoxParent'>
 			<div style={{ display: "flex", justifyContent: "space-between" }}>
 				<div>
-					<h2>Comments for {props.res_name}</h2>
+					<h2>Comments for {props.restaurantName}</h2>
 				</div>
 				<div onClick={() => setShowComments(false)}>
 					<CloseIcon style={{ cursor: "pointer" }} />
@@ -241,7 +108,7 @@ export default function Card(props) {
 	) : (
 		<div />
 	);
-
+​
 	let addCommentBox = showAddCommentBox ? (
 		<div className='addCommentBoxParent'>
 			<h1 className='addCommentHowWasVisit'>
@@ -272,7 +139,7 @@ export default function Card(props) {
 	) : (
 		<div />
 	);
-
+​
 	let editCommentBox = editCommentBoxShow ? (
 		<div className='editCommentBoxParent'>
 			<h1 className='editCommentHowWasVisit'>
@@ -308,7 +175,7 @@ export default function Card(props) {
 	) : (
 		<div />
 	);
-
+​
 	return (
 		<div className={"faveList"}>
 			<Cards className={"card"}>
@@ -319,22 +186,18 @@ export default function Card(props) {
 							{props.res_name}
 						</Typography>
 						<Typography variant='body2' color='textSecondary' component='p'>
-							<p>{props.rating}/5 stars</p>
+							{props.rating}
 						</Typography>
 						<Typography variant='body2' color='textSecondary' component='p'>
 							{props.res_address}
 						</Typography>
 					</CardContent>
 				</CardActionArea>
-
+​
 				<CardActions>
 					<div>
 						<IconButton size='small' color='primary'>
-							<DeleteOutlineOutlinedIcon 
-                                onClick={ () => {
-                                    deleteFavorite();
-                                }} 
-                            />
+							<DeleteOutlineOutlinedIcon onClick={() => this.props.deleteFavorite(favorite_id)}/>
 						</IconButton>
 						<IconButton
 							size='small'
@@ -371,7 +234,4 @@ export default function Card(props) {
 			{editCommentBox}
 		</div>
 	);
->>>>>>> 158421022be925e3cbaa216aab76cd3a13c1bc65
 }
-
-export default connect(state => state)(Card);
