@@ -18,6 +18,7 @@ class RestaurantList extends Component {
 
 	render() {
 		let localRestaurants = [];
+		
 			console.log(this.props.localRestaurants)
 		if (this.state.localRestaurantsToShow === "all") {
 			localRestaurants = this.props.localRestaurants;
@@ -25,7 +26,7 @@ class RestaurantList extends Component {
 			  localRestaurants = this.props.localRestaurants.filter(rating => rating >= 4.5)
 			  console.log(this.props.localRestaurants)
 		  } else if (this.state.localRestaurantsToShow === 'openNow'){
-			  localRestaurants = this.props.localRestaurants.openNow.filte
+			  localRestaurants = this.props.localRestaurants.filter(openNow => openNow === true)
 		  }
 
 		const list = this.props.localRestaurants.map((e, i) => {
