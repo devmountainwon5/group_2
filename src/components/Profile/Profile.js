@@ -33,7 +33,8 @@ const Profile = () => {
 				res_name={e.res_name}
 				userEmail={userEmail}
 				res_address={e.res_address}
-				rating={e.rating}
+                rating={e.rating}
+                favorite_id={e.favorite_id}
 			/>
 		);
 	});
